@@ -1,5 +1,7 @@
-bigkola_empire
+bigkola_empire/django
 ==============
+
+a website build in django
 
 www.bigkola.info
 
