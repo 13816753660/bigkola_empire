@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}给Kola发送Email{%endblock%}
+{% block content %}
+
+<!--=======content================================-->
+<style>
+.blog {
+	margin:20px 10px;
+}
+.span8{	
+	background-color:#fff;
+	border:thin solid #dddddd;
+	border-radius:5px;
+}
+.sub{
+	padding:15px 5px 5px 5px;
+	border-top:thin solid #dddddd;
+	text-align:right;
+}
+.mainmessage{
+	margin-top:60px;
+}
+.message_text{
+	width:430px;
+}
+.eeemail{
+	border-bottom:thin solid #ddd;
+	margin-bottom:25px;
+	padding-bottom:5px;
+	text-align:center;
+}
+</style>
+<!--=======留言板================================-->
+
+
+
+<div class="container mainmessage">
+
+<div class="span8">
+  <div class="blog">
+    <div class="message">
+		<div class="eeemail">
+			<a href="#"><h2>给Kola发送邮件</h2></a>
+		</div>
+
+		<form class="message form-horizontal " id="message_form" action=/email/ method="post">
+				{%csrf_token%}
+				<fieldset>
+				  
+				  <div class="control-group">
+					<label class="control-label" for="input01">姓名(必填)：</label>
+					<div class="controls">
+					  <input type="text" class="input-xlarge" id="input01" placeholder="请填写您的姓名或网名均可…" name="name" value={{name}}>
+					</div>
+				  </div>
+				  
+				  <div class="control-group">
+					<label class="control-label" for="input01">邮箱(必填)：</label>
+					<div class="controls">
+						<input type="text" class="input-xlarge"  placeholder="请填写您的联系邮箱…" name="email" value={{email}}>
+					 {%if flag%}
+						<div class="alert alert-info">
+						 
+						  
+						   <a class="close" data-dismiss="alert">×</a>
+							{{flag}}
+						  
+						</div> 
+					 {%endif%}
+						
+						{% if errors%}
+						{% for error in errors %}
+						<div class="alert alert-error">
+						  <a class="close" data-dismiss="alert">×</a>
+						  <strong>警告!</strong> {{error}}
+						</div>
+						{%endfor%}
+						
+						{%endif%}
+						</div>
+				  </div>		  
+				  
+				  
+				  <div class="control-group">
+					<label class="control-label" for="textarea">邮件内容：</label>
+					<div class="controls">
+					  <textarea class="message_text" id="textarea" rows="10" cols="50" 
+						maxlength="10000"
+						placeholder="输入您想要发送的邮件内容…" name="message">{{message}}</textarea>
+					</div>
+				  </div>
+				  <div class="sub">
+					<button type="submit" class="button button-rounded button-flat-royal" id="message_button">发送邮件</button>
+				  </div>
+				</fieldset>
+		</form>
+    </div><!--end message-->
+  </div><!--end blog-->
+</div><!--end span8-->
+
+</div>
+
+{% endblock%}

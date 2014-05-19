@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title%}contact BigKola{%endblock%}
+
+  
+{% block content %}
+
+<!--=======content================================-->
+<style>
+.blog {
+	margin:20px 10px;
+}
+.span8{	
+	background-color:#fff;
+	border:thin solid #dddddd;
+	border-radius:5px;
+}
+.sub{
+	padding:15px 5px 5px 5px;
+	border-top:thin solid #dddddd;
+	text-align:right;
+}
+.the_message{
+	padding:10px 20px 5px 10px;
+	border-top:thin solid #dddddd;
+}
+#message_time{
+	text-align:right;
+	padding-right:30px;
+}
+#message_time a{
+	font-size:10px;
+}
+.mainmessage{
+	margin-top:60px;
+}
+.message_text{
+	width:430px;
+}
+.message_title{
+	border-bottom:thin solid #ddd;
+	text-align:center;
+	margin-bottom:25px;
+	padding-bottom:5px;
+}
+</style>
+<!--=======留言板================================-->
+<div class="container mainmessage">
+
+<div class="span8">
+  <div class="blog">
+    <div class="message">
+	  <div class="message_title">
+		<a href="#"><h2>帝国留言板</h2></a>
+	  </div>
+
+		<form class="message form-horizontal " id="message_form" action=/message/ method="post">
+				{%csrf_token%}
+				<fieldset>
+				  
+				  <div class="control-group">
+					<label class="control-label" for="input01">姓名（可选）：</label>
+					<div class="controls">
+					  <input type="text" class="input-xlarge" id="input01" placeholder="Type Name…" name="name">
+					</div>
+				  </div>
+				  
+				  <div class="control-group">
+					<label class="control-label" for="input01">邮箱（可选）：</label>
+					<div class="controls">
+						<input type="text" class="input-xlarge"  placeholder="Type Email…" name="email">
+					 
+						<div class="alert alert-info">
+						  <a class="close" data-dismiss="alert">×</a>
+						  {%if flag%}
+						  {{flag}}
+						  {%else%}
+						  <strong>给帝国留言：</strong>
+						  {%endif%}
+						</div> 
+						
+						{% if errors%}
+						{% for error in errors %}
+						<div class="alert alert-error">
+						  <a class="close" data-dismiss="alert">×</a>
+						  <strong>警告!</strong> {{error}}
+						</div>
+						{%endfor%}
+						
+						{%endif%}
+						</div>
+				  </div>		  
+				  
+				  
+				  <div class="control-group">
+					<label class="control-label" for="textarea">留言：</label>
+					<div class="controls">
+					  <textarea class="message_text" id="textarea" rows="10" cols="50" 
+						maxlength="10000"
+						placeholder="Type Message…" name="message"></textarea>
+					</div>
+				  </div>
+				  <div class="sub">
+					<button type="submit" class="button button-rounded button-flat-highlight" id="message_button">提交留言</button>
+				  </div>
+				</fieldset>
+		</form>
+    </div><!--end message-->
+
+		{% for message in mes %}
+		<div class="the_message">
+		  <p>
+			{% if message.name%}
+				帝国公民：<a href="#">{{message.name}}</a>留言说：
+			{% else %}
+				<a>匿名</a>留言：
+			{%endif%}
+		  </p>
+			{%if message.text%}
+				<p>{{message.text|safe}}<p>
+			{% else %}
+				<p>......</p>
+			{%endif%}
+	
+		  <p id="message_time">
+		    <a href="#">{{message.pub_date|date:"Y/m/d H：i"}}</a>
+		  </p>
+		</div>
+		{% endfor %}
+
+
+  </div><!--end blog-->
+</div><!--end span8-->
+
+</div>
+
+{% endblock%}

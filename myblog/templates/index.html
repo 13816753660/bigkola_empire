@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+{% block title %}BigKola Empire{%endblock%}
+{% block content %}
+
+ 
+
+
+<style>
+body{
+	background-color:#e4d6bb;
+}
+.main_body{
+	width:990px;
+	height:100%;
+	background-color:#F1F1F1;
+	margin:0 auto 50px auto;
+	background-image: url({{STATIC_URL}}images/bp14.jpg);
+	-moz-background-size:100% 100%; /* 老版本的 Firefox */
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	
+}
+#left{
+	vertical-align:middle;
+	margin-left:5px;
+	padding:20px 10px;
+	background-color:#999;
+	opacity:0.6;
+	border-radius:5px;
+}
+#right{
+	margin-right:5px;
+	vertical-align:middle;
+	padding:20px 10px;
+	background-color:#999;
+	opacity:0.6;
+	border-radius:5px;
+}
+.main_pic{
+	height:700px;
+	width:900px;
+}
+
+.index_1{
+	width:500px;
+	margin:auto;
+	padding:5px 0 10px 0;
+	border:thin solid #dddddd;
+	border-radius:5px;
+	background-color:#000;
+	opacity:0.6;
+}
+.index_1 *{
+	color:white;
+}
+.index_1_title{
+	width:900px;
+	position: absolute;
+	border:none;
+	top:50px;
+	left:200px;
+	padding:30px;
+	background-color:#000;
+	opacity:0.6;
+}
+.index_1_input{
+	padding-bottom:15px;
+}
+.input-xlarge{
+	color:#000;
+}
+.index1_img{
+	text-align:center;
+	border-bottom:thin solid #dddddd;
+}
+.index_form{
+	margin-top:15px;
+}
+.well{	
+	background-color:#fff;
+	border:thin solid #dddddd;
+	border-radius:5px;
+}
+.index_2{
+	position: absolute;
+	width:600px;
+	height:400px;
+	top:130px;
+	left:300px;
+	padding-left:30px;
+	padding-top:15px;
+	visibility:hidden;
+}
+.index_2 *{
+	color:white;
+}
+.index_2_blog{
+	width:250px;
+	height:80px;
+	padding-top:10px;
+	padding-left:30px;
+
+}
+.index_3{
+	position: absolute;
+	width:600px;
+	height:400px;
+	top:130px;
+	right:100px;
+	padding-right:30px;
+	padding-top:15px;
+	visibility:hidden;
+}
+.index_3_news{
+	width:350px;
+	height:80px;
+	padding-top:10px;
+	padding-left:150px;
+
+}
+.index_3 *{
+	color:white;
+}
+.index_4{
+	width:900px;
+	position: absolute;
+	visibility:hidden;
+	top:50px;
+	left:200px;
+	padding:30px;
+	background-color:#000;
+	opacity:0.6;
+}
+</style>
+	 
+<script>
+$(document).ready(function(){
+  $("#register").click(function(e){
+	window.open("/register/","_self")
+  });
+});
+</script>	 
+
+<script>
+$(document).ready(function(){
+	var i = 0;
+	$("#left").click(function(e){
+		if(i==0){
+			$(".main_body").css("background-image"," url({{STATIC_URL}}images/bp1.jpg)");
+			$("body").css("background-color","#c0c6d4")
+			index_hide(".index_1",".index_3");	
+			i = 2;
+			event.preventDefault();	
+		}
+		else if(i==2){
+			$(".main_body").css("background-image"," url({{STATIC_URL}}images/bp15.jpg)");
+			$("body").css("background-color","#32332d")
+			index_hide(".index_3",".index_2");
+			i--;
+			event.preventDefault();	
+		}
+		else if(i==1){
+			$(".main_body").css("background-image"," url({{STATIC_URL}}images/bp14.jpg)");
+			$("body").css("background-color","#e4d6bb")
+			index_hide(".index_2",".index_4");
+			i--;
+			event.preventDefault();	
+		}
+	})
+	
+	$("#right").click(function(e){
+		if(i==0){
+			$(".main_body").css("background-image"," url({{STATIC_URL}}images/bp15.jpg)");
+			//$(".index_1").css("visibility","hidden");
+			//$(".index_2").css("visibility","visible");
+			$("body").css("background-color","#666")
+			index_hide(".index_1",".index_2");					
+			i++;
+			event.preventDefault();	
+		}
+		else if(i==1){
+			$(".main_body").css("background-image"," url({{STATIC_URL}}images/bp1.jpg)");
+			$("body").css("background-color","#c0c6d4")
+			index_hide(".index_2",".index_3");	
+			i++;
+			event.preventDefault();	
+		}
+  		else if(i==2){
+			$(".main_body").css("background-image"," url({{STATIC_URL}}images/bp14.jpg)");
+			$("body").css("background-color","#e4d6bb")
+			index_hide(".index_3",".index_4");
+			i = 0;
+			event.preventDefault();	
+		}
+	})
+})
+
+function index_hide(index_one,index_two){
+	$(index_one).hide("slow",function(){
+		$(index_two).css("visibility","visible");
+	});	
+}
+</script>
+
+<div class="index_body">
+<div class="main_body"> 
+  <table>
+    <tr>
+		
+	  <td>
+	    <a href="#"> 
+	      <div id="left">
+	        <img src="{{STATIC_URL}}images/left64.png">
+		  </div>
+		</a>
+	  </td>
+		
+		
+		<td class="main_pic">
+		{%if not login_flag%}
+		  <div class="index_1" ><!--+++++++++++++++++start index_1++++++++++++++++++-->
+			
+		    <div class="index1_img">
+				<span><img src="{{STATIC_URL}}images/empire.png"></span>
+			</div>	
+			<form class="form-horizontal index_form" action=/login/ method="post">
+					{%csrf_token%}
+					<fieldset>
+						{% if register_flag%}
+						<div class="alert alert-succes">
+						  <a class="close" data-dismiss="alert">×</a>
+						  <strong>注册成功!</strong> 请登录！
+						</div>
+						
+						{%endif%}							
+							{% if errors%}
+							{% for error in errors %}
+							<div class="alert alert-error">
+							  <a class="close" data-dismiss="alert">×</a>
+							  <strong>警告!</strong> {{error}}
+							</div>
+							{%endfor%}
+							
+							{%endif%}
+					
+			  <table>
+				<tr>
+					<td class="base_label"><p>用户名</p> </td>
+					<td class="base_input index_1_input"><input type="text" class="input-xlarge"  placeholder="Type Name…" name="username"></td>
+				</tr>
+				<tr>
+					<td class="base_label"><p>密码</p>  </td>
+					<td class="base_input index_1_input"><input type="password" class="input-xlarge" placeholder="Type Password…" name="password"></td>
+				</tr>
+				<tr>
+				  <div class="index_1_btn">
+					<td class="base_btn"><button type="submit" 
+					  class="button button-rounded button-flat-primary  button-small" 
+					  name="login">登录帝国</button></td>
+					<td class="base_btn"><button type='button' 
+					  class="button button-rounded button-flat-caution button-small" 
+					  id="register">申请帝国公民身份</button></td>
+				  </div>	  
+				</tr>
+			  </table>		
+			</fieldset>
+			</form>
+			</div><!--+++++++++++++++++end index_1++++++++++++++++++-->
+			{%else%}
+			 <div class="index_1 index_1_title" >
+			   <img src="{{STATIC_URL}}images/google_index.png"> 
+			 </div> 
+			{%endif%}
+		 
+		
+		  <div class="index_2"><!--+++++++++++++++++start index_2++++++++++++++++++-->
+		    <a href="/blog/">
+   		      <img src="{{STATIC_URL}}images/index_blog.png">  
+			</a>	
+			<div class="index_2_blog">
+			    <a href="/blog/">
+			    <h2>点击进入帝国博客专区</h2>
+			    </a>
+			   </div>
+		  </div><!--+++++++++++++++++end index_2++++++++++++++++++-->	
+		  
+		  <div class="index_3"><!--+++++++++++++++++start index_3++++++++++++++++++-->
+		    <a href="/news/">
+   		      <img src="{{STATIC_URL}}images/index_news.png">  
+			</a>	
+			<div class="index_3_news">
+			    <a href="/news/">
+			    <h2>点击进入帝国新闻网</h2>
+			    </a>
+			   </div>
+		  </div><!--+++++++++++++++++end index_3++++++++++++++++++-->
+		  
+		 <div class="index_4" >
+		   <img src="{{STATIC_URL}}images/google_index.png">  
+		 </div>		  
+		</td>
+		
+	 
+	  <td>
+	    <a href="#">
+	    <div id="right">
+		<img src="{{STATIC_URL}}images/right64.png">
+		</div>
+		</a>
+	  </td>
+	 
+	</tr>
+  </table>
+  
+</div>
+</div>
+{% endblock %} 

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}申请成为帝国国民{%endblock%}
+{% block content %}
+<style>
+.main_body{
+	margin-top:60px;
+}
+.button_one{
+	margin-left:280px;
+	text-align:center;
+}
+.register{
+	margin-bottom:25px;
+	padding-bottom:5px;
+	border-bottom:thin solid #ddd;
+}
+#register{
+	text-align:center;
+	padding-bottom:5px;
+}
+.well{	
+	background-color:#fff;
+	border:thin solid #dddddd;
+	border-radius:5px;
+}
+.control-label *{
+	text-align:center;
+}
+</style>
+<div class="container main_body">
+  <div class="row">
+	<div class="span7">
+
+	  <form class="well form-horizontal" action=/register/ method="post">
+		<div class="register">
+			<h2 id="register"><a href="#">申请成为帝国国民</a></h2>
+		</div>
+		<fieldset>
+	  {%csrf_token%}
+		<input type='hidden' name='csrfmiddlewaretoken' value='HjIHiBvb05gghn45gOSJMvLYnmPmZZiK' />
+						{% if errors%}
+						{% for error in errors %}
+						<div class="alert alert-error">
+						  <a class="close" data-dismiss="alert">×</a>
+						  <strong>错误!</strong> {{error}}
+						</div>
+						{%endfor%}
+						
+						{%endif%}		  	
+		
+		  <div class="control-group">
+			<label class="control-label" for="id_username"><p>用户名：</p></label> 
+			<input class="input-xlarge" id="id_username" maxlength="30" placeholder="请使用半角的 a-z 或数字 0-9" name="username" type="text" /> 
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="id_password1"><p>密码：</p></label> 
+			<input class="input-xlarge" id="id_password1" name="password1" placeholder="密码长度不少于6" type="password" />
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="id_password2"><p>密码确认：</p></label> 
+			<input class="input-xlarge" id="id_password2" name="password2" type="password" />
+		  </div>
+		  <div class="button_one">
+		  <input type="submit" class="button button-rounded button-flat-primary"  value="提交">
+		  </div>
+		</fieldset>
+	  </form>
+ 
+    </div>
+	
+	<div class="span4">
+	<!--=======SNS================================-->	
+			   
+		<div class="well">
+
+			 <ul class="nav nav-list">
+			   <li class="nav-header">将帝国分享到SNS：</li>
+			 <li>
+				<div class="go">	   
+				<!-- 将此标记放置在你希望显示+1 按钮的位置。 -->
+				  <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+
+				<!-- 将此标记放置在最后一个 +1 按钮 标记之后。 -->
+				  <script type="text/javascript">
+					  window.___gcfg = {lang: 'zh-CN'};
+
+					  (function() {
+						var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						po.src = 'https://apis.google.com/js/platform.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					  })();
+				  </script>
+				</div><!-- end google +1。 -->
+			 </li>
+
+			<li>	
+				<div class="sina">
+				  <html xmlns:wb=“http://open.weibo.com/wb”>
+				  <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8">
+				  </script>
+				  <wb:share-button appkey="3n3Yax" addition="number" type="button" 
+				  ralateUid="3874142518" default_text="欢迎光临帝国！"></wb:share-button>
+				</div><!-- end sina 。 -->
+			</li>	
+
+			<li class="thewhite"></li>
+
+			<li class="nav-header">添加BigKola的微信：</li>	
+			<li id="myweixin">
+				<img src="{{STATIC_URL}}images/weixin.png" alt="我的微信" />
+			</li>
+				
+			</ul>	
+		</div>
+	</div>
+  </div>
+</div>
+{%endblock%} 
+  

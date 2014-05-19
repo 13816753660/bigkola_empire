@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% block title %}BigKola News{%endblock%}
+{% block content %}
+
+
+<style>
+.news {
+margin:60px auto auto auto;
+}
+textarea
+{
+width:100%;
+height:100%;
+}
+p{
+word-break:break-all;
+}
+.span7{
+border-bottom:thin solid #dddddd;
+border-top:thin solid #dddddd;
+border-radius:5px;
+background-color:white;
+}
+.span5{
+padding-top:10px;
+border-bottom:thin solid #dddddd;
+border-top:thin solid #dddddd;
+border-radius:5px;
+background-color:white;
+}
+
+.news_content{
+padding-top:5px;
+padding-left:7px;
+padding-right:7px;
+border-top:thin dashed #dddddd;
+}
+.news_tag{
+color:#999
+}
+.unfold{
+text-align:right;
+}
+.news_tag_name{
+padding-left:7px;
+padding-right:7px;
+border-radius:15px;
+background-color:#f3f3f3
+}
+.news_title{
+margin:10px auto 10px 10px;
+}
+.news_textarea{
+ width:100%;
+ word-break:break-all;
+}
+.news_sub{
+padding-top:10px;
+text-align:right;
+}
+.page{
+margin:5px auto 25px 20px;
+}
+</style>
+<script type="text/javascript" src="{{ STATIC_URL }}js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">                                
+    tinyMCE.init({                                  
+        mode : "textareas",                                 
+        theme : "modern",                                  
+    });                                  
+</script>
+
+<div class="container news">
+<div class="row"> 
+	<div class="span7">
+	  <div class="news_title">
+		<a href="#">
+		  <img src="{{STATIC_URL}}images/news.png" alt="news logo">
+		</a>
+	  </div>
+		{%for new in contacts%}
+		  <div class="news_content">
+		    <p class="new_text">{{new.text|safe}}</p>
+		    <p class="news_tag">
+			  {%if new.source%}
+			  {{new.source}}
+			  {%else%}
+			  匿名
+			  {%endif%}
+			
+			|{{new.dt|date:"m月d日 H时i分"}}|
+			  <a href="{{new.url}}">查看原文</a>|
+			  {%if new.tags.all%}	
+				{%for tag in new.tags.all%}
+					<span class="news_tag_name"><a href="#">{{tag.name}}</a></span>
+				{%endfor%}
+			  {%else%}
+			   <span class="news_tag_name"><a href="#">匿名</a></span>
+			  {%endif%}
+				|
+				<span class="unfold"><a href="#" class="news{{new.id}}">展开</a></span>
+ 
+				<div id="updateArea{{new.id}}" ></div>
+				<script>
+				$(document).ready(function(){
+				  var text_flag=true;
+				  $(".news{{new.id}}").click(function(event){
+				  if(!text_flag){
+					$("#updateArea{{new.id}}").toggle("normal");
+					event.preventDefault();		
+					}else{
+					$("#updateArea{{new.id}}").load("/news/{{new.id}}");
+					text_flag=false;
+					event.preventDefault();	
+					}
+				  });
+				});
+				</script>
+				
+				
+		    </p>
+		  </div>
+		{%endfor%}
+      <div class="page">
+        {% if contacts.has_previous %}
+		
+            <a href="?page={{ contacts.previous_page_number }}" class="has_previous">上一页</a>
+			<span class="has_center">
+            &nbsp;| &nbsp; <strong>{{ contacts.number }} / {{ contacts.paginator.num_pages }}</strong>
+			</span>
+			{% if contacts.has_next %}
+			 &nbsp;| &nbsp;<a  class="has_next" href="?page={{ contacts.next_page_number }}">下一页</a>
+			{% endif %}
+		{%else%}
+			{% if contacts.has_next %}
+			    <a href="?page={{ contacts.next_page_number }}">→查看更多</a>
+			{%else%}
+			        <span>
+            <a href="#"> {{ contacts.number }} / 共{{ contacts.paginator.num_pages }}页</a>
+					</span>
+			{% endif %}
+		{% endif %}
+      </div>		  
+	</div>
+
+	<div class="span5">
+		<form action="" method="post">
+				  <ul class="nav nav-list">
+					<li><p>提交匿名新闻：</p></li>
+					<li>
+					<fieldset>
+					{%csrf_token%}
+					
+					{% if errors%}
+					{% for error in errors %}
+					  <div class="alert alert-error">
+						<a class="close" data-dismiss="alert">×</a>
+						<strong>警告!</strong> {{error}}
+					  </div>
+					{%endfor%}
+					{%endif%}
+					
+					  <div class="news_textarea">
+						<textarea id="news_textarea" rows="8" placeholder="提交匿名新闻，不要超过300个字" 
+						  maxlength="301" name="news"></textarea>
+					  </div>
+				  
+					  <div class="news_sub">
+						<button type="submit" class="button glow button-rounded button-flat-caution" id="news_button">提交</button>
+					  </div>			
+					</fieldset>	
+					</li>
+				  </ul>
+				</form>
+	</div>
+</div>
+</div>
+{%endblock%}
+     

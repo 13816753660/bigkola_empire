@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}
+	{{blog.title}}  {%endblock%}
+
+	
+	
+{% block content %}
+<meta name="description" content="{{blog.title}}" /> 
+
+<style>
+.blog {
+	margin:10px 10px;
+}
+.message{
+	border-top:thin solid #dddddd;
+	padding-top:10px;
+}
+
+.the_message{word-break: break-all;}
+.blog_title{padding-bottom:10px;}
+.form-sub{
+	padding:15px 5px 5px 5px;
+	border-top:thin solid #dddddd;
+	text-align:right;
+}
+
+.span9{	
+	background-color:#fff;
+	border:thin solid #dddddd;
+	border-radius:5px;
+}
+.alert{
+	margin-top:10px;
+}
+.the_message{
+	padding:10px 20px 5px 10px;
+	border-top:thin solid #dddddd;
+}
+#message_time{
+	text-align:right;
+	padding-right:30px;
+}
+#message_time a{
+	font-size:10px;
+}
+.mainblog{
+	margin-top:50px;
+}
+.message_text{
+	width:510px;
+}
+.form-sub{
+	margin-top:15px;
+}
+</style>
+
+<div class="container mainblog">
+
+<div class="span9">
+			<div class="empire_nav">
+				<a href="/index/" >Empire</a>&nbsp;&diams;&nbsp;<a href="/blog/" >Blog</a>
+			</div>
+  <div class="blog">
+			<a href="#"><h1 class="blog_title">{{blog.title}}</h1></a>
+			{%if blog.author%}
+			<a href="#"><h3>&nbsp;•&nbsp;文/{{blog.author}}</h3></a>
+			{%else%}
+			<a href="#"><h3>&nbsp;•&nbsp;文/admin</h3></a>
+			{%endif%}
+			<br/><br/>
+			<p>	{{context|safe}} </p>
+
+			
+		<!--=======留言板================================-->
+		<div class="message">
+		<form class="form-horizontal " action=/reply_message/{{blog.id}} method="post">
+				{%csrf_token%}
+				<fieldset>
+			 
+				  
+				  <div class="control-group">
+					<label class="control-label" for="input01">姓名（可选）：</label>
+					<div class="controls">
+					  <input type="text" class="input-xlarge" id="input01" placeholder="Type Name…" name="name">
+					</div>
+				  </div>
+				  
+				  <div class="control-group">
+					<label class="control-label" for="input01">邮箱（可选）：</label>
+					<div class="controls">
+						<input type="text" class="input-xlarge" id="input01" placeholder="Type Email…"  name="email">
+						<div class="alert alert-info">
+						  <a class="close" data-dismiss="alert">×</a>
+						  {%if flag%}
+						  {{flag}}
+						  {%else%}
+						  <strong>评论这篇博文</strong>
+						  {%endif%}
+						</div>
+						{% if errors%}
+						{% for error in errors %}
+						<div class="alert alert-error">
+						  <a class="close" data-dismiss="alert">×</a>
+						  <strong>警告!</strong> {{error}}
+						</div>
+						{%endfor%}
+						{%endif%}
+						</div>
+				  </div>		  
+				  
+				  
+				  <div>
+					<label class="control-label" for="textarea">评论：</label>
+					<div class="controls">
+					  <textarea class="message_text" id="textarea" rows="10" placeholder="Type Message…" 
+						maxlength="1000" name="message"></textarea>
+					</div>
+				  </div>
+				  <div class="form-sub">
+					<button type="submit" class="button button-rounded button-flat-primary">提交评论</button>
+				  </div>
+				</fieldset>
+		</form>
+		</div>
+
+
+
+	{% for message in blog.message_set.all %}
+	<div class="the_message">
+	  <p>
+		{% if message.name%}
+			帝国公民：<a href="#">{{message.name}}</a> 评论说 ：
+		{% else %}
+			<a href="#">匿名</a>评论：
+		{%endif%}
+      </p>
+		{%if message.text%}
+			<p>{{message.text}}</p>
+		{% else %}
+			<p>......</p>
+		{%endif%}
+		
+	  <p id="message_time">
+	    <a href="#">{{message.pub_date|date:"Y/m/d  H:i"}}</a>
+	  </p>
+    </div>
+	{% endfor %}
+  </div>
+</div>
+</div>
+
+
+
+{%endblock%}

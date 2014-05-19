@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title%}contact BigKola{%endblock%}
+
+  
+{% block content %}
+
+<!--=======content================================-->
+<style>
+.empire_login{
+	margin-top:60px;
+}
+.span7{
+	border-radius:5px;
+	border-top:thin solid #ddd;
+	background-color:white;
+}
+
+.alert-error{
+	margin:10px 30px;
+}
+.login_base{
+	padding-top:10px;
+	padding-bottom:10px;
+	vertical-align:middle;
+}
+.login_img{
+	text-align:center;
+	border-bottom:thin solid #ddd;
+}
+.login_table{
+	margin-top:15px;
+}
+</style>
+<script>
+$(document).ready(function(){
+  $("#register").click(function(e){
+	window.open("/register/","_self")
+  });
+});
+</script>
+ 
+<div class="container empire_login">
+
+<div class="span7">
+	<div class="login_img">
+	  <span><img src="{{STATIC_URL}}images/empire_black.png"></span>
+	</div>	
+	<form class="form-horizontal login_table" action=/login/ method="post">
+			{%csrf_token%}
+			<fieldset>
+				{% if register_flag%}
+				<div class="alert alert-succes">
+				  <a class="close" data-dismiss="alert">×</a>
+				  <strong>注册成功!</strong> 请登录！
+				</div>
+				
+				{%endif%}							
+					{% if errors%}
+					{% for error in errors %}
+					<div class="alert alert-error">
+					  <a class="close" data-dismiss="alert">×</a>
+					  <strong>警告!</strong> {{error}}
+					</div>
+					{%endfor%}
+					
+					{%endif%}
+			
+	  <table>
+		<tr class="index_1_lable">
+			<td class="base_label login_base"><p>用户名</p> </td>
+			<td class="base_input"><input type="text" class="input-xlarge"  placeholder="Type Name…" name="username"></td>
+		</tr>
+		<tr>
+			<td class="base_label login_base" ><p>密码</p>  </td>
+			<td class="base_input"><input type="password" class="input-xlarge" placeholder="Type Password…" name="password"></td>
+		</tr>
+		<tr>
+		  <div class="index_1_btn">
+			<td class="base_btn"><button type="submit" 
+			  class="button button-rounded button-flat-primary  button-small" 
+			  name="login">登录帝国</button></td>
+			<td class="base_btn"><button type='button' 
+			  class="button button-rounded button-flat-caution button-small" 
+			  id="register">申请帝国公民身份</button></td>
+		  </div>	  
+		</tr>
+	  </table>		
+	</fieldset>
+	</form>
+
+ 
+</div><!--end span8-->
+
+</div>
+
+{% endblock%}

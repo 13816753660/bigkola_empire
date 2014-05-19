@@ -1,0 +1,400 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+	<link rel = "Shortcut Icon" href="{{STATIC_URL}}images/logo_net_32.png">
+    <meta charset="utf-8">
+	<meta name="description" content="BigKola">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet"> 
+	<link href="{{STATIC_URL}}css/buttons.css" rel="stylesheet"> 
+	<script src="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+	<style type="text/css">  
+	*{
+	margin:0;
+	padding:0;
+	font-family:"Microsoft YaHei" sans-serif;
+	}
+	p a{
+	text-transform:none;
+	}
+	body {
+	  background-color:#f3f3f3
+	}
+	.socials{
+		padding: 10px;
+	}
+	#googlebutton{
+		text-align:center;
+	}
+	.listtitle *{
+		vertical-align:middle;
+	}
+	.brand *{
+		vertical-align:middle;
+	}
+	.empire_nav{
+		margin-top:10px;
+		margin-left:15px;
+	}
+	.empire_nav a{
+		color:#999;
+	}
+	p,label{
+		font-family:"Microsoft YaHei" sans-serif;
+	}
+
+	
+	.enter_empire{
+	width:360px;
+	}
+
+	.base_btn{
+		width:180px;
+		padding-top:5px;
+		text-align:center;
+	}
+	.base_input{
+		padding-right:20px;
+		padding-bottom:0;
+		padding-top:0;
+	}
+	.base_label{
+		text-align:center;
+	}
+	.base_img{
+		text-align:center;
+	}
+	</style>	
+</head>
+<body>
+
+
+
+<!--==============================header=================================-->
+
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+	  <a class="brand" href="#"><img src="{{STATIC_URL}}images/logoo.png" alt="logo"></a>
+<ul class="nav">
+  <li><a href=/index/ >
+		<span>Home</span>
+	  </a>
+  </li>
+  <li><a href=/blog/ >
+	    <span>Blog</span>
+	  </a>
+  </li>
+  <li><a href=/news/ >
+		<span>News</span>
+	  </a>
+  </li>
+</ul>
+
+
+<ul class="nav">
+  <li class="dropdown dropdown_one">
+    <a href="#"
+          class="dropdown-toggle"
+          data-toggle="dropdown">
+          Contact
+          <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+		<li class="listtitle">
+		  <a href=/message/>
+			<img src="{{STATIC_URL}}images/message_net_32.png" alt="message">
+			<span>留言</span>
+		  </a>
+		</li>
+		<li class="listtitle">
+		  <a href=/email/>
+			<img src="{{STATIC_URL}}images/gmail-32-black.png" alt="gmail">
+			<span>发送邮件</span>
+		  </a>
+		</li>
+		<li class="listtitle">
+		  <a href=/bigkola/>
+			<img src="{{STATIC_URL}}images/aboutme-32-black.png" alt="about kola">
+			<span>关于Kola</span>
+		  </a>
+		</li>
+    </ul>
+  </li>
+</ul>
+
+
+<form class="navbar-search pull-left" id="h_search" method="get">
+  <input type="text" class="search-query" id="head_search" placeholder="Search" value="">
+</form>
+
+
+
+
+
+  
+<ul class="nav pull-right">
+
+{%if login_flag%}
+  <li class="dropdown dropdown_one">
+    <a href="#"
+          class="dropdown-toggle"
+          data-toggle="dropdown">
+          {{kola_name}}
+          <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+		<li class="listtitle">
+		  <a href=/history/ >
+		    <img src="{{STATIC_URL}}images/histroy_net_24.png" alt="message">
+			<span>帝国编年史</span>
+		  </a>
+		</li>
+		
+		<li class="listtitle">
+		  <a href=/wiki/ > 
+		    <img src="{{STATIC_URL}}images/wikipedia-32-black.png" alt="wiki">
+			<span>帝国百科全书</span>
+		  </a>
+		</li>
+		
+		<li class="listtitle">
+		  <a href=/message/ >
+		    <img src="{{STATIC_URL}}images/message_net_32.png" alt="message">
+			<span>帝国留言版</span>
+		  </a>
+		</li>
+	</ul>	
+  </li>
+  <li>
+		  <a href=/bbs/ >
+			<span>帝国论坛</span>
+		  </a>
+  </li>
+  <li>
+		  <a href=/logout/ >
+			<span>离开帝国</span>
+		  </a>
+  </li>
+{%else%}
+
+
+  <li class="dropdown dropdown_one enter_empire_title">
+    <a href="#"
+          class="dropdown-toggle"
+          data-toggle="dropdown">
+          登录帝国
+          <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu enter_empire">
+	
+		<li class="base_img"><img src="{{STATIC_URL}}images/index_kola.png"></li>
+	
+      <li>
+			<form action=/login/ method="post">
+			{%csrf_token%}
+			<fieldset>
+			  <table>
+				<tr>
+					<td class="base_label"><img src="{{STATIC_URL}}images/user24.png">  </td>
+					<td class="base_input"><input type="text"  placeholder="Type Name…" name="username"></td>
+				</tr>
+				<tr>
+					<td class="base_label"><img src="{{STATIC_URL}}images/pw24.png">  </td>
+					<td class="base_input"><input type="password"  placeholder="Type Password…" name="password"></td>
+				</tr>
+				<tr>
+					<td class="base_btn"><button type="submit" 
+					  class="button button-rounded button-flat-primary  button-small" 
+					  name="login">登录帝国</button></td>
+					<td class="base_btn"><button type='button' 
+					  class="button button-rounded button-flat-caution button-small" 
+					  id="base_register">申请帝国公民身份</button></td>
+				</tr>
+			  </table>	
+			 </fieldset> 
+			</form>
+		</li>	
+	</ul>
+ </li>	
+ 
+{%endif%}  
+ <script>
+$(document).ready(function(){
+  $("#base_register").click(function(e){
+	window.open("/register/","_self")
+  });
+});
+</script>	 
+ 
+</ul>
+    </div>
+  </div>
+</div>
+
+<script src="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
+<script src="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-alert.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    $(".dropdown_one").hover(function(){
+        $(this).children("ul").stop(true,true).slideDown(300);
+    },function(){
+        $(this).children("ul").stop(true,true).slideUp(300);
+    })           
+})</script><!--下拉菜单-->
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#h_search").submit(function(e){
+    var vva = $("#head_search").val(); 
+	var url = /search/+"?q="+vva;
+    window.open(url,"_blank")
+  });
+});
+</script>	<!--====================处理搜索栏==============-->
+
+
+
+<!--==============================content=================================-->
+
+
+
+     
+		{% block content %}{% endblock %}
+	  
+
+
+
+<!--===============================================================-->
+
+<style>
+#gootop{ 
+	display:block;  
+	width:60px; 
+	height:60px;
+	position:fixed;  
+	bottom:50px;  
+	right:40px; 
+	border-radius:10px 10px 10px 10px;   
+	text-decoration:none;  
+	display:none;  
+	background-color:#999999;   
+}
+#gootop span{ 
+	display:block; 
+	width:60px; 
+	color:#dddddd;
+	font-size:40px; 
+	text-align:center; 
+	margin-top:5px; 	
+} 
+#gootop span:hover{ 
+	color:#cccccc; 
+} 
+
+</style>
+
+<script>
+$(function(){
+	$(window).scroll(function(){   
+		var scrollt = document.documentElement.scrollTop + document.body.scrollTop;  
+		if( scrollt >200 ){   
+			$("#gootop").fadeIn(400);     
+		}else{      
+			$("#gootop").stop().fadeOut(400);   
+		}
+	});
+	$("#gootop").click(function(){  
+			$("html,body").animate({scrollTop:"0px"},200);
+	});
+});
+</script>
+
+<a id="gootop" href="#">   
+  <span><img src="{{STATIC_URL}}images/top_48.png"></span> 
+</a>
+
+
+<!--==============================footer=================================-->
+<style>
+.base_footer{
+	margin-top:20px;
+	padding-top:10px;
+	color:#000;
+	text-align:center;
+}
+</style>
+
+<div class="footer">
+	<div class="base_footer">		
+	    <p>
+		  ©2014&nbsp;-&nbsp;<span class="tz+8"> </span>&nbsp;-&nbsp;
+		  <strong>BigKola Empire</strong>&nbsp;-&nbsp;
+		  <a href="#">bigkola.info</a>
+		</p>
+	</div>			
+</div>
+
+<script>
+window.onload = initDate; 
+function initDate() { 
+	var allTags = document.getElementsByTagName("*"); 
+	for (var i=0; i<allTags.length; i++) { 
+		if (allTags[i].className.indexOf("tz") == 0) { 
+			showTheTime(allTags[i],allTags[i].className.substring(2)); 
+		} 
+	} 
+} 
+
+function showTheTime(currElem,tzOffset) { 
+	var dayName = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"); 
+	var monName = new Array("January","February", "March", "April", "May","June", "July", "August", "September",  
+"October", "November", "December"); 
+	var thatTZ = new Date(); 
+	var dateStr = thatTZ.toUTCString(); 
+	dateStr = dateStr.substr(0,dateStr.length - 3); 
+	thatTZ.setTime(Date.parse(dateStr)); 
+	thatTZ.setHours(thatTZ.getHours() + parseInt(tzOffset)); 
+	currElem.innerHTML = monName[thatTZ.getMonth()]+" - " + 
+		thatTZ.getDate() + " - " +
+		dayName[thatTZ.getDay()] + " - " + 
+		showTheHours(thatTZ.getHours()) + 
+		showZeroFilled(thatTZ.getMinutes()) +
+		showAmPm(thatTZ.getHours()) ; 
+	function showTheHours(theHour) { 
+		if (theHour < 13) { 
+			return theHour; 
+		} 
+		return theHour-12;
+	} 
+	function showZeroFilled(inValue) { 
+			if (inValue > 9) { 
+			return ":" + inValue; 
+		} 
+		return ":0" + inValue; 
+	} 
+	function showAmPm(thatTime) { 
+		if (thatTime < 12) { 
+			return " AM "; 
+		} 
+		return " PM "; 
+	} 
+}
+</script>
+
+
+<script type="text/javascript">
+      (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+       po.src = 'https://apis.google.com/js/client:plusone.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+     })();
+</script><!--google账户-->    
+
+	
+</body>
+</html>
