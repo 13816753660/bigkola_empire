@@ -155,16 +155,6 @@ def post_a_message(request):
                 pass
 
     return HttpResponseRedirect("/message/")
-    return render_to_response('message.html',{
-        'flag':flag,
-        'errors':errors,
-        'name':request.POST.get('name',''),
-        'email':request.POST.get('email',''),
-        'message':request.POST.get('message',''),
-        'kola_name':kola_name,
-        'login_flag':login_flag
-        },context_instance=RequestContext(request))
-
 
 def bigkola(request):
     '''
