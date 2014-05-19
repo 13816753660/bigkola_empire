@@ -22,7 +22,6 @@ urlpatterns = patterns('',
     url(r'^message/$', 'myblog.views.message',name='message'),
     url(r'^reply_message/(?P<blog_id>\d+)$', 'myblog.views.post_message',name="post_message"),
     url(r'^reply_a_message/$', 'myblog.views.post_a_message',name='post_a_message'),
-    url(r'^thanks/$', 'myblog.views.thanks'),
     url(r'^email/$', 'myblog.views.email'),
     url(r'^news/', include('news.urls')),
     url(r'^bbs/', include('bbs.urls')),
@@ -36,4 +35,3 @@ from django.conf import settings
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
