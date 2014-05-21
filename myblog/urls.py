@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     url(r'^email/$', 'myblog.views.email'),
     url(r'^news/', include('news.urls')),
     url(r'^bbs/', include('bbs.urls')),
+    url(r'^worldcup/', include('worldcup2014.urls')),
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': 'media'})
 
 )
