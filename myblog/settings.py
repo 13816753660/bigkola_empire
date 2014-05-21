@@ -158,7 +158,8 @@ INSTALLED_APPS = (
     'myblog',
     'bootstrap_toolkit',
     'news',
-    'bbs'
+    'bbs',
+    'worldcup2014'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
