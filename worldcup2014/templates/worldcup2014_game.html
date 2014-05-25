@@ -1,0 +1,53 @@
+<style>
+@media (min-width: 780px){
+.all_games{
+	background-color:#000;
+	background: rgba(0, 0, 0, 0.3);
+	padding:20px;
+}}
+
+.all_games_title{
+	text-align:center;
+	padding:0px;
+}
+.all_game_date{
+	margin:0;
+}
+.all_game_day{
+	border-bottom:thin dashed #ddd;
+	padding-bottom:20px;
+}
+.all_game_detail{
+	padding-top:2px;
+}
+</style>
+
+<div class="all_games">
+
+	<h1 class="all_games_title">{{data.text}}</h1>
+  
+	{%for time in data.gamedate_set.all%}
+	  <div class="all_game_day">
+		<h4 class="all_game_date">开赛日期：{{time.date|date:"Y年m月d日"}}</h4>
+		{%for game in time.game_set.all%}
+		  <div class="all_game_detail">
+ 
+			{{game.time|date:"H:i"}}&nbsp;&nbsp;&nbsp;&nbsp;
+			{{game.team1}} VS {{game.team2}}&nbsp;&nbsp;
+				{%if game.website%}
+					<a href="{{game.website}}">直播网站</a>&nbsp;&nbsp;
+				{%else%}
+				    <a href="#">观看直播</a>&nbsp;&nbsp;
+				{%endif%}
+				{%if game.result%}
+					比赛结果：{{game.result}}
+					{%else%}
+					未赛
+				{%endif%}<br />
+ 	
+		  </div>
+		{%endfor%}
+	  </div>	
+	{%endfor%}
+
+</div> 
