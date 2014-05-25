@@ -1,0 +1,51 @@
+<style>
+.world_cup{
+	text-align:center;
+}
+@media (min-width: 780px){
+	.index_game{
+		background-color:#000;
+		background: rgba(0, 0, 0, 0.3);
+		padding:20px;
+	}
+}
+
+.index_game *{
+	margin:0;
+}
+.game_day{
+	border-bottom:thin dashed #ddd;
+	padding-bottom:10px;
+}
+.index_menu{
+	padding-top:10px;
+}
+
+</style>
+<div class="index_game">
+	<h1 class="world_cup">World Cup</h1>
+	{%for d in data%}
+		<h2 class="index_menu">{{d.text}}</h2>
+		  {%for date in d.gamedate_set.all%} 
+		    <div class="game_day">
+			<h4 class="index_date">{{date.date|date:"Y-m-d"}}</h4>
+			  <div>
+			  {%for game in date.game_set.all%}				
+				{{game.time|date:"H:i"}}&nbsp;&nbsp;&nbsp;&nbsp;
+				{{game.team1}} VS {{game.team2}}&nbsp;&nbsp;
+				{%if game.website%}
+					<a href="{{game.website}}">直播网站</a>&nbsp;&nbsp;
+				{%else%}
+				     <a href="#">观看直播</a>&nbsp;&nbsp;
+				{%endif%}
+				{%if game.result%}
+				比赛结果：{{game.result}}
+				{%else%}
+				未赛
+				{%endif%}<br />
+			  {%endfor%}
+			  </div>
+			</div>
+		  {%endfor%}
+	{%endfor%}
+</div>
