@@ -18,11 +18,14 @@ body *{
 }
 
 a:link{
-	color:#0099CC;
+	color:#F1C40F;
 	text-decoration:none;	
 }
 a:hover{
 	text-decoration:underline;
+}
+a:visited{
+	color:#F1C40F;
 }
 h3 a:link{
 		font-family:DFKai-SB;
@@ -81,6 +84,7 @@ ul li a{
 	}
 	#button a{
 		font-family:"Microsoft YaHei" sans-serif FangSong;
+		color:white;
 	}
 	.game-menu-pad{
 		visibility:hidden;
@@ -108,9 +112,12 @@ ul li a{
 		margin-left:20%;
 		margin-right:auto;
 	}
+	.navbar-about a{
+		color:#3498DB;
+	}
 }	
 
-@media (max-width: 780px){ 
+@media (max-width: 780px){
 	body{
 		background-color:#f3f3f3;
 	}
@@ -154,7 +161,7 @@ ul li a{
 		event.preventDefault();	
 	  });  
 	});
-	</script>
+	</script>	
     {%for menu in menudata%}
 	<a href="{{menu.flag}}" id="world_pad{{menu.flag}}">{{menu.text}}</a>
 	<script>
@@ -183,11 +190,11 @@ ul li a{
 		$("#all_game a").css("color","#3498DB");
 	  });	  
 	});
-	</script>
-	
+	</script>  
+  
 	{%for menu in menudata%}
 	<h3 class="menu_text" id="world{{menu.flag}}">
-		<a href="{{menu.flag}}">{{menu.text}}</a><br />
+		<a href="{{menu.flag}}" >{{menu.text}}</a><br />
 	</h3>
 	<style>
 		#all_game:hover{
