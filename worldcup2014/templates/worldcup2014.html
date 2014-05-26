@@ -44,7 +44,7 @@ ul li a{
 	font-size:90%;
 }
 
-@media (min-width: 780px){
+@media (min-width: 781px){
 	.navbar{
 		position:absolute;
 		width:50px;
@@ -84,12 +84,7 @@ ul li a{
 	}
 	#button a{
 		font-family:"Microsoft YaHei" sans-serif FangSong;
-		color:white;
-	}
-	.game-menu-pad{
-		visibility:hidden;
-		width:0;
-		height:0;
+		color:#3498DB;
 	}
 	.ball_pic{
 		margin-top:20px;
@@ -121,13 +116,16 @@ ul li a{
 	body{
 		background-color:#f3f3f3;
 	}
-	.game-menu-pc,.navbar-kola,.navbar-about{
+	.navbar-kola,.navbar-about{
 		visibility:hidden;
 		height:0;
 		width:0;
 	}
-	.game-menu-pad{
-		margin:auto;
+	.game-menu h3{
+		display:inline-block;
+	}
+	.game-menu h3 a{
+		color:#3498DB;
 	}
 	.content{
 	width:100%;
@@ -151,31 +149,8 @@ ul li a{
 </div>
 
 <div class="navbar navbar-cup">
-
-  <div class="game-menu-pad">
-	<h3 id="all_game_pad"><a href="#" class="test">所有比赛</a></h3>
-	<script>
-	$(document).ready(function(){
-	  $("#all_game_pad").click(function(event){
-		$(".content").load("/worldcup/all");
-		event.preventDefault();	
-	  });  
-	});
-	</script>	
-    {%for menu in menudata%}
-	<a href="{{menu.flag}}" id="world_pad{{menu.flag}}">{{menu.text}}</a>
-	<script>
-	$(document).ready(function(){
-	  $("#world_pad{{menu.flag}}").click(function(event){
-		$(".content").load("/worldcup/{{menu.flag}}");
-		event.preventDefault();	
-	  });  
-	});
-	</script>
-	{%endfor%}
-  </div>
   
-  <div class="game-menu-pc">
+  <div class="game-menu">
 	<h3 class="menu_text" id="all_game"><a href="#" class="test">所有比赛</a></h3>
 	<script>
 	$(document).ready(function(){
