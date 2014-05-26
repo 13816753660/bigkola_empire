@@ -146,7 +146,7 @@ ul li a{
 <div class="navbar navbar-cup">
 
   <div class="game-menu-pad">
-	<h3 id="all_game_pad"><a href="#" id="test">所有比赛</a></h3>
+	<h3 id="all_game_pad"><a href="#" class="test">所有比赛</a></h3>
 	<script>
 	$(document).ready(function(){
 	  $("#all_game_pad").click(function(event){
@@ -169,13 +169,19 @@ ul li a{
   </div>
   
   <div class="game-menu-pc">
-	<h3 class="menu_text" id="all_game"><a href="#" id="test">所有比赛</a></h3>
+	<h3 class="menu_text" id="all_game"><a href="#" class="test">所有比赛</a></h3>
 	<script>
 	$(document).ready(function(){
 	  $("#all_game").click(function(event){
 		$(".content").load("/worldcup/all");
 		event.preventDefault();	
-	  });  
+	  }); 
+	  $("#all_game").mouseenter(function(){
+		$("#all_game a").css("color","#8E44AD");
+	  });
+	  $("#all_game").mouseleave(function(){
+		$("#all_game a").css("color","#3498DB");
+	  });	  
 	});
 	</script>
 	
@@ -215,6 +221,12 @@ ul li a{
 		$(".content").load("/worldcup/{{menu.flag}}");
 		event.preventDefault();	
 	  });  
+	  $("#world{{menu.flag}}").mouseenter(function(){
+		$("#world{{menu.flag}} a").css("color","#8E44AD");
+	  });
+	  $("#world{{menu.flag}}").mouseleave(function(){
+		$("#world{{menu.flag}} a").css("color","#3498DB");
+	  });	  
 	});
 	</script>
 	{%endfor%}
@@ -243,7 +255,7 @@ ul li a{
 <script>
 $(document).ready(function(){
   $(".content").load("/worldcup/100");
-  $("#test").click(function(event){
+  $(".test").click(function(event){
 	$(".content").load("/worldcup/all");
 	event.preventDefault();	
   }); 
