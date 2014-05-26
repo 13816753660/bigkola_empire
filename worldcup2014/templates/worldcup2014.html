@@ -144,17 +144,17 @@ ul li a{
 </div>
 
 <div class="navbar navbar-cup">
-	<h3 class="menu_text" id="all_game"><a href="#" id="test">所有比赛</a></h3>
+
+  <div class="game-menu-pad">
+	<h3 id="all_game_pad"><a href="#" id="test">所有比赛</a></h3>
 	<script>
 	$(document).ready(function(){
-	  $("#all_game").click(function(event){
+	  $("#all_game_pad").click(function(event){
 		$(".content").load("/worldcup/all");
 		event.preventDefault();	
 	  });  
 	});
 	</script>
-
-  <div class="game-menu-pad">
     {%for menu in menudata%}
 	<a href="{{menu.flag}}" id="world_pad{{menu.flag}}">{{menu.text}}</a>
 	<script>
@@ -169,6 +169,16 @@ ul li a{
   </div>
   
   <div class="game-menu-pc">
+	<h3 class="menu_text" id="all_game"><a href="#" id="test">所有比赛</a></h3>
+	<script>
+	$(document).ready(function(){
+	  $("#all_game").click(function(event){
+		$(".content").load("/worldcup/all");
+		event.preventDefault();	
+	  });  
+	});
+	</script>
+	
 	{%for menu in menudata%}
 	<h3 class="menu_text" id="world{{menu.flag}}">
 		<a href="{{menu.flag}}">{{menu.text}}</a><br />
