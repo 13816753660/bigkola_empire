@@ -10,8 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
 
 import settings
-import sae
-from PIL import Image
+#import sae
+#from PIL import Image
 
 def index(request):
     '''
