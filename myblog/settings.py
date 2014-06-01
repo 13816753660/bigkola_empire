@@ -156,7 +156,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'myblog',
-    'bootstrap_toolkit',
     'news',
     'bbs',
     'worldcup2014'
