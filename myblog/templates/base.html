@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <title>{% block title %}{% endblock %}</title>
@@ -10,43 +10,29 @@
 	<link href="{{STATIC_URL}}css/buttons.css" rel="stylesheet"> 
 	<script src="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
 	<style type="text/css">  
-	*{
-	margin:0;
-	padding:0;
-	font-family:"Microsoft YaHei" sans-serif;
+	html,body {
+		margin: 0;
+		padding:0;
+		background-color:#f3f3f3
 	}
-	p a{
-	text-transform:none;
-	}
-	body {
-	  background-color:#f3f3f3
+	body *{
+		font-family:"Microsoft YaHei" sans-serif;
+		word-break: break-all;
 	}
 	.socials{
 		padding: 10px;
 	}
-	#googlebutton{
-		text-align:center;
+	p a{
+	text-transform:none;
 	}
 	.listtitle *{
 		vertical-align:middle;
 	}
 	.brand *{
 		vertical-align:middle;
-	}
-	.empire_nav{
-		margin-top:10px;
-		margin-left:15px;
-	}
-	.empire_nav a{
-		color:#999;
-	}
-	p,label{
-		font-family:"Microsoft YaHei" sans-serif;
-	}
-
-	
+	}	
 	.enter_empire{
-	width:360px;
+		width:360px;
 	}
 
 	.base_btn{
@@ -65,6 +51,22 @@
 	.base_img{
 		text-align:center;
 	}
+	.base_content{
+		min-height:100%;
+		height: auto ;
+		height: 100%; /*IE6不识别min-height*/
+		position: relative;
+		padding-bottom:10px;
+	}
+	.bottom{
+		width:100%;
+		color:#000;
+		text-align:center;
+		overflow:hidden;
+		margin-top:50px;
+		clear:both;
+	}
+	
 	</style>	
 </head>
 <body>
@@ -79,18 +81,26 @@
     <div class="container">
 	  <a class="brand" href="#"><img src="{{STATIC_URL}}images/logoo.png" alt="logo"></a>
 <ul class="nav">
-  <li><a href=/index/ >
+  <li>
+      <a href=/index/ >
 		<span>Home</span>
 	  </a>
   </li>
-  <li><a href=/blog/ >
+  <li>
+      <a href=/blog/ >
 	    <span>Blog</span>
 	  </a>
   </li>
-  <li><a href=/news/ >
+  <li>
+      <a href=/news/ >
 		<span>News</span>
 	  </a>
   </li>
+  <li>
+      <a href=/worldcup/ >
+		<span>WorldCup</span>
+	  </a>
+  </li>  
 </ul>
 
 
@@ -99,7 +109,7 @@
     <a href="#"
           class="dropdown-toggle"
           data-toggle="dropdown">
-          Contact
+          About
           <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
@@ -179,8 +189,6 @@
 		  </a>
   </li>
 {%else%}
-
-
   <li class="dropdown dropdown_one enter_empire_title">
     <a href="#"
           class="dropdown-toggle"
@@ -192,7 +200,7 @@
 	
 		<li class="base_img"><img src="{{STATIC_URL}}images/index_kola.png"></li>
 	
-      <li>
+        <li>
 			<form action=/login/ method="post">
 			{%csrf_token%}
 			<fieldset>
@@ -269,6 +277,7 @@ $(document).ready(function(){
 	$(".navbar-fixed-top").headroom();
 </script> 
 
+
 <!--==============================content=================================-->
 
 
@@ -330,24 +339,15 @@ $(function(){
 
 
 <!--==============================footer=================================-->
-<style>
-.base_footer{
-	margin-top:20px;
-	padding-top:10px;
-	color:#000;
-	text-align:center;
-}
-</style>
 
-<div class="footer">
-	<div class="base_footer">		
-	    <p>
+<div class="bottom">
+	    <p class="">
 		  ©2014&nbsp;-&nbsp;<span class="tz+8"> </span>&nbsp;-&nbsp;
 		  <strong>BigKola Empire</strong>&nbsp;-&nbsp;
 		  <a href="#">bigkola.info</a>
-		</p>
-	</div>			
+		</p>		
 </div>
+ 
 
 <script>
 window.onload = initDate; 
@@ -397,14 +397,5 @@ function showTheTime(currElem,tzOffset) {
 </script>
 
 
-<script type="text/javascript">
-      (function() {
-       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-       po.src = 'https://apis.google.com/js/client:plusone.js';
-       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-     })();
-</script><!--google账户-->    
-
-	
 </body>
 </html>
