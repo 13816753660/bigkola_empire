@@ -1,0 +1,119 @@
+@media (min-width: 781px){
+	.navbar{
+		position:absolute;
+		width:25%;
+		height:100%;
+		left:0;
+		top:0;
+		overflow:auto;
+		background-color:#000;
+	}
+	.main{
+		position:absolute;
+		padding:0;
+		margin:0;
+		width:75%;
+		height:100%;
+		left:25%;
+		overflow:auto;
+		background-color:green;
+		
+	}
+	.main *{
+		color:#fff;
+	}
+	.content{
+		width:600px;
+		height:100%;
+		margin-top:0;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	.navbar *{
+		text-align:center;
+		overflow-y:auto;
+	}
+	.navbar h3{
+		width:100%;
+		letter-spacing:2px;
+		padding-bottom:8px;
+		padding-top:9px;
+	}
+	.navbar-cup{
+		overflow-y:auto;
+		background-color:#000;
+	}
+	.navbar-cup *{
+		text-align:center;
+	}
+	.navbar-about{
+		margin-top:50px;
+		border-top:thin solid #3498DB;
+		padding-top:30px;
+	}
+	#world_cup_pic{
+		width:100%;
+		margin-top:10px;
+	}
+	#world_cup_pic *{
+		text-align:center;
+	}
+	#all_game:hover{
+		background-color:red;
+	}
+	#world100:hover{
+		background-color:red;
+	}		
+	#world32:hover{
+		background-color:red;
+	}
+	#world16:hover{
+		background-color:red;
+	}
+	#world8:hover{
+		background-color:red;
+	}
+	#world4:hover{
+		background-color:red;
+	}
+	#world3:hover{
+		background-color:red;
+	}
+	#world1:hover{
+		background-color:red;
+	}		
+	
+}
+
+
+
+@media (max-width: 781px){
+	.navbar{
+		background-color:#000;
+	}
+	.main *{
+		color:#fff;
+		background:#2ECC71;
+	}
+	.navbar-cup h3{
+		width:33%;
+		padding-top:5px;
+		padding-bottom:5px;
+		text-align:center;
+		vertical-align:middle;
+	}
+	.navbar-cup{
+		border-bottom:thin solid #ddd;
+	}
+	.navbar-about,.for-ie{
+		visibility:hidden;
+		height:0;
+		width:0;
+	}
+	#world_cup_pic{
+		width:100%;
+		text-align:center;
+	}
+	
+}
