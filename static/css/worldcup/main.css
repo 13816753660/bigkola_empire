@@ -1,0 +1,61 @@
+html{
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+}
+body{
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+}
+body *{
+	margin:0;
+	padding:0;
+	font-family:"Microsoft YaHei";
+}
+a:link{
+	color:#F1C40F;
+	text-decoration:none;	
+}
+a:hover{
+	text-decoration:underline;
+}
+a:visited{
+	color:#F1C40F;
+}
+a:active{
+	text-decoration:none;	
+}
+.navbar-cup{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+}
+.contanier{
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+.navbar h3 a,.navbar-about li a{
+	color:#3498DB;
+}
+.navbar h3 a:hover{
+	text-decoration:none;
+}
+.for-ie{
+	visibility:hidden;
+	visibility:visible\0;
+	*visibility:visible;
+	height:0;
+	height:100px\0;
+	*height:100px;
+	text-align:center;
+	padding-top:30px\0;
+	background-color:yellow;
+	color:red;
+}
+
+		 
