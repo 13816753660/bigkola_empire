@@ -3,7 +3,7 @@
 <head>
 <title>World Cup</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="Shortcut Icon" href="{{STATIC_URL}}images/logo_net_32.png">
+<link rel = "Shortcut Icon" href="{{STATIC_URL}}images/logo_net_32.png">
 <link href="{{STATIC_URL}}css/worldcup/main.css" rel="stylesheet"> 
 <link href="{{STATIC_URL}}css/worldcup/media.css" rel="stylesheet"> 
 <script src="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
@@ -21,7 +21,9 @@
 	<div class="navbar"><!--++++++++++++++++导航++++++++++++++++++-->
 	  <div class="navbar-cup">
 		<div id="world_cup_pic">
-		<img src="{{STATIC_URL}}images/ball.png" alt="world cup" height="60px;">
+		  <a href="/index/">
+		    <img src="{{STATIC_URL}}images/ball.png" alt="world cup" height="60px;">
+		  </a>
 		</div>
 		<h3 class="menu_text" id="all_game"><a href="#" class="test">所有比赛</a></h3>
 		<script>
@@ -29,13 +31,7 @@
 		  $("#all_game").click(function(event){
 			$(".content").load("/worldcup/all");
 			event.preventDefault();	
-		  }); 
-		  $("#all_game").mouseenter(function(){
-			$("#all_game a").css("color","#8E44AD");
-		  });
-		  $("#all_game").mouseleave(function(){
-			$("#all_game a").css("color","#3498DB");
-		  });	  
+		  }); 	  
 		});
 		</script>  
 	  
@@ -50,12 +46,6 @@
 			$(".content").load("/worldcup/{{menu.flag}}");
 			event.preventDefault();	
 		  });  
-		  $("#world{{menu.flag}}").mouseenter(function(){
-			$("#world{{menu.flag}} a").css("color","#8E44AD");
-		  });
-		  $("#world{{menu.flag}}").mouseleave(function(){
-			$("#world{{menu.flag}} a").css("color","#3498DB");
-		  });	  
 		});
 		</script>
 		{%endfor%}
@@ -96,5 +86,7 @@ $(document).ready(function(){
   }); 
 });
 </script>
+
+
 </body>
 </html>
