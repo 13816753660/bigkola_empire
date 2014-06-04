@@ -53,9 +53,13 @@ a:active{
 	height:100px\0;
 	*height:100px;
 	text-align:center;
-	padding-top:30px\0;
+	padding-top:60px\0;
 	background-color:yellow;
 	color:red;
 }
-
-		 
+.for-ie p{
+	color:#000;
+}
+.for-ie p strong{
+	color:red;
+}		 
