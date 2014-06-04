@@ -4,244 +4,99 @@
 <title>World Cup</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel = "Shortcut Icon" href="{{STATIC_URL}}images/logo_net_32.png">
+<link href="{{STATIC_URL}}css/worldcup/main.css" rel="stylesheet"> 
+<link href="{{STATIC_URL}}css/worldcup/media.css" rel="stylesheet"> 
 <script src="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
 <style>
-
-html,body{
-	margin:0;
-	padding:0;
-	width:100%;
-	height:100%;
-}
-body *{
-	font-family:"Microsoft YaHei" sans-serif FangSong;
-}
-
-a:link{
-	color:#F1C40F;
-	text-decoration:none;	
-}
-a:hover{
-	text-decoration:underline;
-}
-a:visited{
-	color:#F1C40F;
-}
-h3 a:link{
-		font-family:DFKai-SB;
-}
-ul {
-	list-style: none outside none;
-	padding: 10px;
-	text-align: center;
-}
-ul li {
-	zoom: 1;
-	padding: 3px;
-}
-ul li a{
-	color:#2980B9;
-	font-size:90%;
-}
-
 @media (min-width: 781px){
-	.navbar{
-		position:absolute;
-		width:50px;
-		height:100%;
-		top:0;
-		left:0;
-		background-color:#000;
-		text-align:center;
-	}
-	.navbar-cup{
-		margin-left:50px;
-		width:200px;
-		overflow:auto;
-		background-color:#000;
-		background-image:url({{STATIC_URL}}images/Six.gif);
-	}
-	.navbar-cup *{
-		text-align:center;
-	}
-	.navbar-about{
-		margin-top:60px;
-		border-top:thin solid #3498DB
-	}
-	.main-content{
-		margin-left:250px;
-		height:100%;
-		overflow:auto;
-		background-color:#009933;
+	.main{
 		background-image:url({{STATIC_URL}}images/football1.jpg);
 	}
-	.main-content *{
-		color:#fff;
-	}
-	#button{
-		position:absolute;
-		bottom:0;
-	}
-	#button a{
-		font-family:"Microsoft YaHei" sans-serif FangSong;
-		color:#3498DB;
-	}
-	.ball_pic{
-		margin-top:20px;
-	}
-	.menu_text{
-		margin:0;
-		padding:10px;
-	}
-	.menu_text a{
-		color:#3498DB;
-	}
-	.menu_text a:hover{
-		color:#8E44AD;
-	}
-	#world100{
-		background-color:#000;
-	}
-	.content{
-		width:500px;
-		margin-left:20%;
-		margin-right:auto;
-	}
-	.navbar-about a{
-		color:#3498DB;
-	}
-}	
-
-@media (max-width: 780px){
-	body{
-		background-color:#f3f3f3;
-	}
-	.navbar-kola,.navbar-about{
-		visibility:hidden;
-		height:0;
-		width:0;
-	}
-	.game-menu h3{
-		display:inline-block;
-	}
-	.game-menu h3 a{
-		color:#3498DB;
-	}
-	.content{
-	width:100%;
-	}
 }
-
 </style>
-
-
 </head>
 
 <body>
- 
-<div class="navbar navbar-kola">
-  <div class="ball_pic">
-	<a href="/index/">
-	  <img src="{{STATIC_URL}}images/ball_24.png" alt="ball">
-	</a>
-  </div>
-<p id="button"><a href="#">@kola</a></p>
-</div>
+<div class="container">
+	<div class="navbar"><!--++++++++++++++++导航++++++++++++++++++-->
+	  <div class="navbar-cup">
+		<div id="world_cup_pic">
+		<img src="{{STATIC_URL}}images/ball.png" alt="world cup" height="60px;">
+		</div>
+		<h3 class="menu_text" id="all_game"><a href="#" class="test">所有比赛</a></h3>
+		<script>
+		$(document).ready(function(){
+		  $("#all_game").click(function(event){
+			$(".content").load("/worldcup/all");
+			event.preventDefault();	
+		  }); 
+		  $("#all_game").mouseenter(function(){
+			$("#all_game a").css("color","#8E44AD");
+		  });
+		  $("#all_game").mouseleave(function(){
+			$("#all_game a").css("color","#3498DB");
+		  });	  
+		});
+		</script>  
+	  
+		{%for menu in menudata%}
+		<h3 class="menu_text" id="world{{menu.flag}}">
+			<a href="{{menu.flag}}" >{{menu.text}}</a><br />
+		</h3>
 
-<div class="navbar navbar-cup">
-  
-  <div class="game-menu">
-	<h3 class="menu_text" id="all_game"><a href="#" class="test">所有比赛</a></h3>
-	<script>
-	$(document).ready(function(){
-	  $("#all_game").click(function(event){
-		$(".content").load("/worldcup/all");
-		event.preventDefault();	
-	  }); 
-	  $("#all_game").mouseenter(function(){
-		$("#all_game a").css("color","#8E44AD");
-	  });
-	  $("#all_game").mouseleave(function(){
-		$("#all_game a").css("color","#3498DB");
-	  });	  
-	});
-	</script>  
-  
-	{%for menu in menudata%}
-	<h3 class="menu_text" id="world{{menu.flag}}">
-		<a href="{{menu.flag}}" >{{menu.text}}</a><br />
-	</h3>
-	<style>
-		#all_game:hover{
-			background-color:red;
-		}
-		#world100:hover{
-			background-color:red;
-		}		
-		#world32:hover{
-			background-color:red;
-		}
-		#world16:hover{
-			background-color:red;
-		}
-		#world8:hover{
-			background-color:red;
-		}
-		#world4:hover{
-			background-color:red;
-		}
-		#world3:hover{
-			background-color:red;
-		}
-		#world1:hover{
-			background-color:red;
-		}		
-	</style>
-	<script>
-	$(document).ready(function(){
-	  $("#world{{menu.flag}}").click(function(event){
-		$(".content").load("/worldcup/{{menu.flag}}");
-		event.preventDefault();	
-	  });  
-	  $("#world{{menu.flag}}").mouseenter(function(){
-		$("#world{{menu.flag}} a").css("color","#8E44AD");
-	  });
-	  $("#world{{menu.flag}}").mouseleave(function(){
-		$("#world{{menu.flag}} a").css("color","#3498DB");
-	  });	  
-	});
-	</script>
-	{%endfor%}
-  </div>
-  
-  <div class="navbar-about">
-  <ul>
-	  <li style="padding-top:0"><h3 style="margin:0;padding-top:0;">
-		<a href="#" style="color:#3498DB">友情链接:</a></h3></li>
-	  <li><a href="http://www.zhibo8.cc/">直播8</a></li>
-	  <li><a href="http://espn.go.com/">ESPN</a></li>
-	  <li><a href="http://www.fifa.com/">FIFA</a></li>
-	  <li><a href="http://www.fifa.com/worldcup/">World Cup</a></li>
-  </ul>
-  </div>
+		<script>
+		$(document).ready(function(){
+		  $("#world{{menu.flag}}").click(function(event){
+			$(".content").load("/worldcup/{{menu.flag}}");
+			event.preventDefault();	
+		  });  
+		  $("#world{{menu.flag}}").mouseenter(function(){
+			$("#world{{menu.flag}} a").css("color","#8E44AD");
+		  });
+		  $("#world{{menu.flag}}").mouseleave(function(){
+			$("#world{{menu.flag}} a").css("color","#3498DB");
+		  });	  
+		});
+		</script>
+		{%endfor%}
+	  </div>
+	  
+	  <div class="navbar-about">
+	  <ul>
+		  <li style="padding-top:0"><h3 style="margin:0;padding-top:0;">
+			<a href="#" style="color:#3498DB">友情链接:</a></h3>
+		  </li>
+		  <li><a href="http://www.zhibo8.cc/">直播8</a></li>
+		  <li><a href="http://espn.go.com/">ESPN</a></li>
+		  <li><a href="http://www.fifa.com/">FIFA</a></li>
+		  <li><a href="http://www.fifa.com/worldcup/">World Cup</a></li>
+	  </ul>
+	  </div>
 
-</div>
+	</div> <!--++++++++++++++++导航完++++++++++++++++++-->
 
+	<div class="main"> <!--++++++++++++++++内容区域++++++++++++++++++-->
+	  <div class="for-ie">
+		<p>此页面不针对IE系浏览器进行编写，为了享受更好的体验，请使用
+		<a href="https://www.google.com/intl/zh-CN/chrome/browser/">
+		<strong>chrome浏览器! </strong></a>
+		</p>
+	  </div>		
+	  <div class="content">
 
-<div class="main-content">
-
-  <div class="content">
-
-  </div>
+	  </div>
+	</div> <!--++++++++++++++++内容完++++++++++++++++++--> 
 </div>
 <script>
 $(document).ready(function(){
-  $(".content").load("/worldcup/100");
+  $(".content").load("/worldcup/all");
   $(".test").click(function(event){
 	$(".content").load("/worldcup/all");
 	event.preventDefault();	
   }); 
 });
 </script>
+
+
 </body>
 </html>
