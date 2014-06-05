@@ -1,4 +1,4 @@
-@media (min-width: 781px){
+@media screen\9,\0screen,screen and (min-width:0\0),(min-width: 781px){
 	.navbar{
 		position:absolute;
 		width:25%;
@@ -24,6 +24,7 @@
 	}
 	.content{
 		width:600px;
+		width:600px\0;
 		height:100%;
 		margin-top:0;
 		margin-left:auto;
@@ -51,6 +52,9 @@
 		margin-top:50px;
 		border-top:thin solid #3498DB;
 		padding-top:30px;
+	}
+	.navbar-about *{
+		font-size:95%;
 	}
 	#world_cup_pic{
 		width:100%;
