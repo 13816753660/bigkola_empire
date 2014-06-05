@@ -28,6 +28,9 @@ a:visited{
 a:active{
 	text-decoration:none;	
 }
+li{
+	list-style-type:none;
+}
 .navbar-cup{
 	display: -webkit-flex;
 	display: flex;
@@ -53,7 +56,6 @@ a:active{
 	height:100px\0;
 	*height:100px;
 	text-align:center;
-	padding-top:60px\0;
 	background-color:yellow;
 	color:red;
 }
@@ -62,7 +64,7 @@ a:active{
 }
 .for-ie p strong{
 	color:red;
-}		 
+}
 #all_game:hover a{
 	color:#8E44AD;
 }
@@ -90,3 +92,4 @@ a:active{
 #world1:hover a{
 	color:#8E44AD;
 }	
+	 
