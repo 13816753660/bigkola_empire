@@ -1,15 +1,31 @@
 <style>
-.world_cup{ 
+.world_cup{
+	padding-top:10px;
 	text-align:center;
 }
-@media (min-width: 781px){
+.world_cup *{
+	vertical-align:middle;
+}
+@media screen\9,\0screen,screen and (min-width:0\0),(min-width: 781px){
 	.index_game{
 		background-color:#000;
 		background: rgba(0, 0, 0, 0.3);
+		width:100%;
 		padding:20px;
 	}
 }
-
+@media (min-width: 481px) and (max-width:780px){
+	.index_game{
+		width:480px;
+		margin:auto;
+	}
+}
+@media (max-width:480px){
+	.index_game{
+		width:300px;
+		margin:auto;
+	}
+}
 .index_game *{
 	margin:0;
 }
@@ -20,10 +36,36 @@
 .index_menu{
 	padding-top:10px;
 }
-
+.footer{
+	width:100%;
+	padding-top:50px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+}
+.footer *{
+	color:#eee;
+	font-size:90%;
+}
+.footer a{
+	color:#eee;
+}
+.footer li a{
+	color:#eee;
+}
+.foo-left{
+	width:50%;
+}
+.foo-middle,.foo-right{
+	width:25%;
+}
 </style>
 <div class="index_game">
-	<h1 class="world_cup">World Cup</h1>
+	<h1 class="world_cup">
+	  <img src="{{STATIC_URL}}images/trophy.ico" alt="world cup" height="100px;">
+	  World Cup
+	</h1>
 	{%for d in data%}
 		<h2 class="index_menu">{{d.text}}</h2>
 		  {%for date in d.gamedate_set.all%} 
@@ -48,4 +90,48 @@
 			</div>
 		  {%endfor%}
 	{%endfor%}
+	
+	<div class="footer">
+		<div class="foo-left">
+		©2014 <a href="/index/">BigKola</a>
+		</div>
+		<div class="foo-middle">
+		<strong>Links</strong>
+		<li>
+		  <a href="/blog/">
+			BigKola's Blog
+		  </a>
+		</li>
+		</div>
+		<div class="foo-right">
+		
+		<strong>About Me</strong>
+		<li>
+		  <a href="/email/">
+			E-mail
+		  </a>
+		</li>
+		<li>
+		  <a href="https://github.com/imelucifer/">
+			Github
+		  </a>
+		</li>
+		<li>
+		  <a href="https://plus.google.com/+KolaWang/">
+			G+
+		  </a>
+		</li>
+		<li>
+		  <a href="http://weibo.com/bigkola/">
+			WeiBo
+		  </a>	
+		</li>
+		<li>
+		  <a href="http://www.douban.com/people/imelucifer/" >
+			DouBan
+		  </a>
+		</li>
+		<li>&nbsp;&nbsp;</li>
+		</div>
+	</div>
 </div>
