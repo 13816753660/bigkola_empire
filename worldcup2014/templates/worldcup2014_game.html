@@ -1,17 +1,35 @@
 <style>
-@media (min-width: 781px){
+@media screen\9,\0screen,screen and (min-width:0\0),(min-width: 781px){
 .all_games{
 	background-color:#000;
 	background: rgba(0, 0, 0, 0.3);
+	widt:100%;
 	padding:20px;
-}}
+	}
+}
+@media (min-width: 481px) and (max-width:780px){
+	.all_games{
+		width:480px;
+		margin:auto;
+	}
+}
+@media (max-width:480px){
+	.all_games{
+		width:300px;
+		margin:auto;
+	}
+}
 
 .all_games_title{
 	text-align:center;
-	padding:0px;
+	padding-top:10px;
+}
+.all_games_title *{
+	vertical-align:middle;
 }
 .all_game_date{
 	margin:0;
+	padding-top:5px;
 }
 .all_game_day{
 	border-bottom:thin dashed #ddd;
@@ -20,11 +38,16 @@
 .all_game_detail{
 	padding-top:2px;
 }
+
+
 </style>
 
 <div class="all_games">
 
-	<h1 class="all_games_title">{{data.text}}</h1>
+	<h1 class="all_games_title">
+	  <img src="{{STATIC_URL}}images/trophy.ico" alt="world cup" height="100px">
+	  {{data.text}}
+	</h1>
   
 	{%for time in data.gamedate_set.all%}
 	  <div class="all_game_day">
@@ -49,5 +72,5 @@
 		{%endfor%}
 	  </div>	
 	{%endfor%}
-
-</div> 
+	
+</div>
