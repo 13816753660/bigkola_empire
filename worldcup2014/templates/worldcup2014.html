@@ -8,7 +8,7 @@
 <link href="{{STATIC_URL}}css/worldcup/media.css" rel="stylesheet"> 
 <script src="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
 <style>
-@media (min-width: 781px){
+@media screen\9,screen\0,(min-width: 781px){
 	.main{
 		background-image:url({{STATIC_URL}}images/football1.jpg);
 	}
@@ -26,15 +26,6 @@
 		  </a>
 		</div>
 		<h3 class="menu_text" id="all_game"><a href="#" class="test">所有比赛</a></h3>
-		<script>
-		$(document).ready(function(){
-		  $("#all_game").click(function(event){
-			$(".content").load("/worldcup/all");
-			event.preventDefault();	
-		  }); 	  
-		});
-		</script>  
-	  
 		{%for menu in menudata%}
 		<h3 class="menu_text" id="world{{menu.flag}}">
 			<a href="{{menu.flag}}" >{{menu.text}}</a><br />
@@ -67,9 +58,9 @@
 
 	<div class="main"> <!--++++++++++++++++内容区域++++++++++++++++++-->
 	  <div class="for-ie">
-		<p>此页面不针对IE系浏览器进行编写，为了享受更好的体验，请使用
-		<a href="https://www.google.com/intl/zh-CN/chrome/browser/">
-		<strong>chrome浏览器! </strong></a>
+		<p>您的浏览器版本过低，为了享受更好的体验，请使用
+		<a href="https://www.google.com/intl/zh-CN/chrome/browser/" id="for-ie-a">
+		<strong>chrome浏览器! （点击下载最新版chrome浏览器）</strong></a>
 		</p>
 	  </div>		
 	  <div class="content">
@@ -84,6 +75,17 @@ $(document).ready(function(){
 	$(".content").load("/worldcup/all");
 	event.preventDefault();	
   }); 
+  $("#all_game").click(function(event){
+	$(".content").load("/worldcup/all");
+	event.preventDefault();	
+  });   
+  $(".for-ie").click(function(event){
+	$(".for-ie").hide();
+  })
+  $("#for-ie-a").click(function(event){
+	window.open("https://www.google.com/intl/zh-CN/chrome/browser/","_blank");
+	event.preventDefault();	
+  })
 });
 </script>
 
