@@ -35,6 +35,8 @@
 		$(document).ready(function(){
 		  $("#world{{menu.flag}}").click(function(event){
 			$(".content").load("/worldcup/{{menu.flag}}");
+			$(".menu_text").css("background-color","");
+			$("#world{{menu.flag}}").css("background-color","red");
 			event.preventDefault();	
 		  });  
 		});
@@ -71,8 +73,11 @@
 <script>
 $(document).ready(function(){
   $(".content").load("/worldcup/all");
-  $(".test").click(function(event){
+  $("#all_game").css("background-color","red");
+  $("#all_game").click(function(event){
 	$(".content").load("/worldcup/all");
+	$(".menu_text").css("background-color","");
+	$("#all_game").css("background-color","red");	
 	event.preventDefault();	
   }); 
   $("#all_game").click(function(event){
