@@ -65,27 +65,43 @@
 	}
 	#all_game:hover{
 		background-color:red;
+		-webkit-transition: background-color .1s linear; 
+		transition: background-color .1s linear; 
 	}
 	#world100:hover{
 		background-color:red;
+		-webkit-transition: background-color .1s linear; 
+		transition: background-color .1s linear; 		
 	}		
 	#world32:hover{
 		background-color:red;
+		-webkit-transition: background-color .1s linear; 
+		transition: background-color .1s linear; 
 	}
 	#world16:hover{
 		background-color:red;
+		-webkit-transition: background-color .1s linear; 
+		transition: background-color .1s linear; 
 	}
 	#world8:hover{
 		background-color:red;
+		-webkit-transition: background-color .1s linear; 
+		transition: background-color .1s linear; 		
 	}
 	#world4:hover{
 		background-color:red;
+		-webkit-transition: background-color .1s linear; 
+		transition: background-color .1s linear; 
 	}
 	#world3:hover{
 		background-color:red;
+		-webkit-transition: background-color .1s linear; 
+		transition: background-color .1s linear; 
 	}
 	#world1:hover{
 		background-color:red;
+		-webkit-transition: background-color .1s linear; 
+		transition: background-color .1s linear; 
 	}		
 	
 }
