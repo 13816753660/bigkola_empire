@@ -1,3 +1,12 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".team").hover(function() {
+		$(this).find("em").animate({opacity: "show"}, "slow");
+	}, function() {
+		$(this).find("em").animate({opacity: "hide", top: "-120"}, "fast");
+	});
+});
+</script>
 <style>
 .world_cup{
 	padding-top:10px;
@@ -60,8 +69,43 @@
 .foo-middle,.foo-right{
 	width:25%;
 }
+.team{
+	position: relative;
+}
+.team em {
+	background: #1ABC9C ;
+	width: 280px;
+	height: auto;
+	position:absolute;
+	top: -120px;
+	left: -60px;
+	padding: 10px 12px 10px;
+	font-style: normal;
+	z-index: 2;
+	display:none;
+	border-radius:5px;
+}
+.team em .triangle{
+    width:0; 
+    height:0; 
+    font-size:0; 
+    border-width:15px; 
+    border-style:solid; 
+    border-color:#1ABC9C transparent transparent; 
+    _border-color:#1ABC9C white white; 
+    overflow:hidden; 
+    position:absolute; 
+    left:60px; 
+    bottom:-30px;
+}
+.team-introduce{
+	font-size:90%;
+}
 </style>
 <div class="index_game">
+
+
+
 	<h1 class="world_cup">
 	  <img src="{{STATIC_URL}}images/trophy.ico" alt="world cup" height="100px;">
 	  World Cup
@@ -74,7 +118,30 @@
 			  <div>
 			  {%for game in date.game_set.all%}				
 				{{game.time|date:"H:i"}}&nbsp;&nbsp;&nbsp;&nbsp;
-				{{game.team1}} VS {{game.team2}}&nbsp;&nbsp;
+			<span class="team">
+			  {{game.team1}}
+			  <em>
+			    <div class="team-introduce">
+				  <p>球队:{{game.team1}}</p>
+				  <p>最佳战绩：</p>
+				  <p>核心球员：</p>
+				  <p><a href="#">点击查看球队详细介绍</a></p>
+			    </div><span class="triangle"></span>
+			  </em>
+			</span> 
+			VS 
+			<span class="team">
+			{{game.team2}}
+			  <em>
+			    <div class="team-introduce">
+				  <p>球队:{{game.team2}}</p>
+				  <p>最佳战绩：</p>
+				  <p>核心球员：</p>
+				  <p><a href="#">点击查看球队详细介绍</a></p>
+			    </div><span class="triangle"></span>
+			  </em>
+			</span>
+			&nbsp;&nbsp;
 				{%if game.website%}
 					<a href="{{game.website}}">直播网站</a>&nbsp;&nbsp;
 				{%else%}
