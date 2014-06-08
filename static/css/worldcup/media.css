@@ -6,7 +6,7 @@
 		left:0;
 		top:0;
 		overflow:auto;
-		background-color:#000;
+		background-color:#333;
 	}
 	.main{
 		position:absolute;
@@ -29,7 +29,6 @@
 		margin-top:0;
 		margin-left:auto;
 		margin-right:auto;
-		background-color:#2ECC71;
 	}
 
 	.navbar *{
@@ -44,7 +43,7 @@
 	}
 	.navbar-cup{
 		overflow-y:auto;
-		background-color:#000;
+		background-color:#333;
 	}
 	.navbar-cup *{
 		text-align:center;
@@ -111,11 +110,13 @@
 
 @media (max-width: 781px){
 	.navbar{
-		background-color:#000;
+		background-color:#333;
 	}
 	.main *{
 		color:#fff;
-		background:#2ECC71;
+	}
+	.content{
+		background-color:#2ECC71;
 	}
 	.navbar-cup h3{
 		width:33%;
@@ -135,8 +136,5 @@
 	#world_cup_pic{
 		width:100%;
 		text-align:center;
-	}
-	.them em{
-		background-color:rgba(26,188,156,0.6);
 	}
 }
