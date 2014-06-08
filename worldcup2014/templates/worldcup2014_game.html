@@ -1,10 +1,24 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".team").hover(function() {
+		$(this).find("em").animate({opacity: "show"}, "slow");
+	}, function() {
+		$(this).find("em").animate({opacity: "hide", top: "-120"}, "fast");
+	});
+});
+</script>
 <style>
 @media screen\9,\0screen,screen and (min-width:0\0),(min-width: 781px){
 .all_games{
-	background-color:#000;
-	background: rgba(0, 0, 0, 0.3);
-	widt:100%;
-	padding:20px;
+		background-color:#000;
+		background: rgba(0, 0, 0, 0.3);
+		widt:100%;
+		padding:20px;
+	}
+#footer{
+		height:0;
+		padding:0;
+		visibility:hidden;
 	}
 }
 @media (min-width: 481px) and (max-width:780px){
@@ -38,8 +52,62 @@
 .all_game_detail{
 	padding-top:2px;
 }
-
-
+.footer{
+	width:100%;
+	padding-top:50px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+}
+.footer *{
+	color:#eee;
+	font-size:90%;
+}
+.footer a{
+	color:#eee;
+}
+.footer li a{
+	color:#eee;
+}
+.foo-left{
+	width:50%;
+}
+.foo-middle,.foo-right{
+	width:25%;
+}
+.team{
+	position: relative;
+}
+.team em {
+	background: #1ABC9C ;
+	width: 280px;
+	height: auto;
+	position:absolute;
+	top: -120px;
+	left: -60px;
+	padding: 10px 12px 10px;
+	font-style: normal;
+	z-index: 2;
+	display:none;
+	border-radius:5px;
+}
+.team em .triangle{
+    width:0; 
+    height:0; 
+    font-size:0; 
+    border-width:15px; 
+    border-style:solid; 
+    border-color:#1ABC9C transparent transparent; 
+    _border-color:#1ABC9C white white; 
+    overflow:hidden; 
+    position:absolute; 
+    left:60px; 
+    bottom:-30px;
+}
+.team-introduce{
+	font-size:90%;
+}
 </style>
 
 <div class="all_games">
@@ -56,7 +124,30 @@
 		  <div class="all_game_detail">
  
 			{{game.time|date:"H:i"}}&nbsp;&nbsp;&nbsp;&nbsp;
-			{{game.team1}} VS {{game.team2}}&nbsp;&nbsp;
+			<span class="team">
+			  {{game.team1}}
+			  <em>
+			    <div class="team-introduce">
+				  <p>球队:{{game.team1}}</p>
+				  <p>最佳战绩：</p>
+				  <p>核心球员：</p>
+				  <p><a href="#">点击查看球队详细介绍</a></p>
+			    </div><span class="triangle"></span>
+			  </em>
+			</span> 
+			VS 
+			<span class="team">
+			{{game.team2}}
+			  <em>
+			    <div class="team-introduce">
+				  <p>球队:{{game.team2}}</p>
+				  <p>最佳战绩：</p>
+				  <p>核心球员：</p>
+				  <p><a href="#">点击查看球队详细介绍</a></p>
+			    </div><span class="triangle"></span>
+			  </em>
+			</span>
+			&nbsp;&nbsp;
 				{%if game.website%}
 					<a href="{{game.website}}">直播网站</a>&nbsp;&nbsp;
 				{%else%}
@@ -72,5 +163,47 @@
 		{%endfor%}
 	  </div>	
 	{%endfor%}
-	
+	<div class="footer" id="footer">
+		<div class="foo-left">
+		©2014 <a href="/index/">BigKola</a>
+		</div>
+		<div class="foo-middle">
+		<strong>Links</strong>
+		<li>
+		  <a href="/blog/">
+			BigKola's Blog
+		  </a>
+		</li>
+		</div>
+		<div class="foo-right">
+		
+		<strong>About Me</strong>
+		<li>
+		  <a href="/email/">
+			E-mail
+		  </a>
+		</li>
+		<li>
+		  <a href="https://github.com/imelucifer/">
+			Github
+		  </a>
+		</li>
+		<li>
+		  <a href="https://plus.google.com/+KolaWang/">
+			G+
+		  </a>
+		</li>
+		<li>
+		  <a href="http://weibo.com/bigkola/">
+			WeiBo
+		  </a>	
+		</li>
+		<li>
+		  <a href="http://www.douban.com/people/imelucifer/" >
+			DouBan
+		  </a>
+		</li>
+		<li>&nbsp;&nbsp;</li>
+		</div>
+	</div>	
 </div>
