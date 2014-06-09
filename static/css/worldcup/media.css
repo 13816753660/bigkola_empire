@@ -133,6 +133,9 @@
 		height:0;
 		width:0;
 	}
+	.sidebar-button{
+		display:none;
+	}
 	#world_cup_pic{
 		width:100%;
 		text-align:center;
