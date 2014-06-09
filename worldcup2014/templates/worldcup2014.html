@@ -6,11 +6,12 @@
 <link rel="Shortcut Icon" href="{{STATIC_URL}}images/logo_net_32.png">
 <link href="{{STATIC_URL}}css/worldcup/main.css" rel="stylesheet"> 
 <link href="{{STATIC_URL}}css/worldcup/media.css" rel="stylesheet"> 
+<link href="{{STATIC_URL}}css/buttons.css" rel="stylesheet"> 
 <script src="{{STATIC_URL}}bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
 <style>
 @media screen\9,screen\0,(min-width: 781px){
 	.main{
-		background-image:url({{STATIC_URL}}images/football1.jpg);
+		background:url({{STATIC_URL}}images/football1.jpg);
 	}
 }
 </style>
@@ -70,6 +71,24 @@
 	  </div>
 	</div> <!--++++++++++++++++内容完++++++++++++++++++--> 
 </div>
+
+<div class="sidebar-button">
+  <a href="#" class="button button-rounded button-flat-caution button-tiny">&nbsp;&nbsp;home&nbsp;&nbsp;</a>
+</div>
+<div class="sidebar">
+  <div class="sidebar-button" id="sidebar-button">
+    <a href="#" class="button button-rounded button-flat-primary button-tiny">X</a>
+  </div>
+  <li><strong>BigKola</strong></li>
+  <li class="sidebar-menu"><a href="/index/">Home</a></li>
+  <li class="sidebar-menu"><a href="/blog/">Blog</a></li>
+  <li class="sidebar-menu"><a href="/news/">News</a></li>
+  <li class="sidebar-menu"><a href="/message/">Message</a></li>
+  <li class="sidebar-menu"><a href="/email/">E-mail</a></li>
+  <li class="sidebar-menu"><a href="/bigkola/">about Kola</a></li>
+</div>
+
+
 <script>
 $(document).ready(function(){
   $(".content").load("/worldcup/all");
@@ -90,6 +109,13 @@ $(document).ready(function(){
   $("#for-ie-a").click(function(event){
 	window.open("https://www.google.com/intl/zh-CN/chrome/browser/","_blank");
 	event.preventDefault();	
+  })
+  $(".sidebar-button").click(function(event){
+	$(".sidebar").toggle(300);
+  })
+  $(".sidebar-menu").click(function(event){
+	//window.open($(this).find("a").attr("href"),"_self");
+	//event.preventDefault();
   })
 });
 </script>
