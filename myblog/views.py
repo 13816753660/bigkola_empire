@@ -324,25 +324,18 @@ def register(request):
             errors.append(u'密码长度必须大于6个字符')
         elif password1 != password2 :
             errors.append(u'两次输入密码必须相同')
-        else:    
+        else:
             try:
+                user = User.objects.get(username=name)
+                errors.append(u'用户名已被注册')
+                return render(request,'register.html',{'errors':errors})
+            except User.DoesNotExist:    
                 user = User.objects.create_user(
                     username = name,
                     password = password1,
                     )
-                user.is_active = True
-                user.is_staff = True
-                #user.is_superuser = True
-                user.save()
-                test_user = auth.authenticate(username=name,password=password1)
-                if test_user is not None:
-                    register_flag = True
-                    return render(request,'login.html',{'register_flag':register_flag})
-                else:
-                    errors.append(u'用户名已被注册')
-            except:
-                errors.append(u"用户名已被注册，请更换")
-            #return HttpResponseRedirect('/login/')            
+                register_flag = True
+                return render(request,'login.html',{'register_flag':register_flag})
         return render(request,'register.html',{'errors':errors})
-    
-    return render(request,'register.html')
+    else:
+        return render(request,'register.html')
