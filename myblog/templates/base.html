@@ -265,7 +265,19 @@ $(document).ready(function(){
 });
 </script>	<!--====================处理搜索栏==============-->
 
-
+<!--隐藏导航栏-->
+<script src="{{STATIC_URL}}js/bootstrap.js"></script>
+<style type="text/css">
+.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+.headroom--unpinned {top: -100px;}
+.headroom--pinned {top: 0;}
+</style>
+<script src="jquery.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/headroom.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/jQuery.headroom.js"></script>
+<script type="text/javascript">
+	$(".navbar-fixed-top").headroom();
+</script><!--隐藏导航栏-->
  
 
 <!--==============================content=================================-->
