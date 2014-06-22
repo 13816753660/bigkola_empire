@@ -30,48 +30,33 @@ def blog(request):
     '''
     login_flag = False
     kola_name = ''
+    mess = []
     if "login_flag" in request.session:
         login_flag = True
         kola_name = request.session['name']    
+    #try:
+    messages_list = Kola_message.objects.order_by('-pub_date')[:10]
+    blog_list = MyBlog.objects.order_by('-pub_date')
+
+    #总数据列表
+    paginator = Paginator(blog_list, 25) # Show 25 contacts per page
+
+    page = request.GET.get('page')
     try:
-        messages_list = Kola_message.objects.order_by('-pub_date')[:10]
-        latest_blog_list = MyBlog.objects.order_by('-pub_date')
-        test_list = [] 
-        mess = [] 
-        num_list =[]     
-        for i in latest_blog_list:
-            #blog的标题和简介
-            mes = i.message_set.all()
-            num = len(mes) #该篇博文的评论数
-            num_list.append(num)
-            if len(i.content)>300:
-                test_list.append(i.content[:300])
-            else:
-                test_list.append(i.content)            
-        thelist = zip(latest_blog_list,test_list,num_list)
-        #总数据列表
-        paginator = Paginator(thelist, 25) # Show 25 contacts per page
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
 
-        page = request.GET.get('page')
-        try:
-            contacts = paginator.page(page)
-        except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
-            contacts = paginator.page(1)
-        except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
-            contacts = paginator.page(paginator.num_pages)
-
-        for i in messages_list:
-            #留言板的标题和简介
-            if len(i.text)>200:
-                mess.append(i.text[:200]+'[...]')
-            else:
-                mess.append(i.text)
-        messages = zip(messages_list,mess) 
-        return render(request,'blog.html',locals())
-    except:
-        return  HttpResponse(u'该页面正在维护中....')
+    for i in messages_list:
+        #留言板的标题和简介
+        if len(i.text)>200:
+            mess.append(i.text[:200]+'[...]')
+        else:
+            mess.append(i.text)
+    messages = zip(messages_list,mess) 
+    return render(request,'blog.html',locals())
 
 
 def detail(request,blog_id):
