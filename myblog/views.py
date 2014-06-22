@@ -17,23 +17,13 @@ def index(request):
     '''
     首页
     '''
-    login_flag = False
-    kola_name = ''
-    if "login_flag" in request.session:
-        login_flag = True
-        kola_name = request.session['name']
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def blog(request):
     '''
     博客主页
     '''
-    login_flag = False
-    kola_name = ''
-    mess = []
-    if "login_flag" in request.session:
-        login_flag = True
-        kola_name = request.session['name']    
+    mess = []  
     #try:
     messages_list = Kola_message.objects.order_by('-pub_date')[:10]
     blog_list = MyBlog.objects.order_by('-pub_date')
@@ -58,18 +48,10 @@ def blog(request):
     messages = zip(messages_list,mess) 
     return render(request,'blog.html',locals())
 
-
 def detail(request,blog_id):
     '''
     详细博文内容
     '''
-    kola_name = ''
-    test = ''
-    login_flag = False
-    kola_name = ''
-    if "login_flag" in request.session:
-        login_flag = True
-        kola_name = request.session['name']
     try:
         blog = MyBlog.objects.get(pk=blog_id)
     except MyBlog.DoesNotExist:
@@ -80,11 +62,6 @@ def post_message(request,blog_id):
     '''
     博客留言
     '''
-    login_flag = False
-    kola_name = ''
-    if "login_flag" in request.session:
-        login_flag = True
-        kola_name = request.session['name']
     errors=[]
     flag = ""
     if request.method == "POST":
@@ -109,11 +86,6 @@ def post_a_message(request):
     '''
     errors=[]
     flag = ""
-    login_flag = False
-    kola_name = ''
-    if "login_flag" in request.session:
-        login_flag = True
-        kola_name = request.session['name']
     if request.method == "POST":
         if not request.POST.get('message',''):
             errors.append(u'请输入留言内容')
@@ -138,24 +110,13 @@ def bigkola(request):
     '''
     联系bigkola
     '''
-    login_flag = False
-    kola_name = ''
-    if "login_flag" in request.session:
-        login_flag = True
-        kola_name = request.session['name']
-    return render(request,'bigkola.html',locals())
+    return render(request,'bigkola.html')
 
 def message(request):
     '''
     留言板
     '''
-    login_flag = False
-    kola_name = ''
     mes = Kola_message.objects.order_by('-pub_date')[:100]
-    if "login_flag" in request.session:
-        login_flag = True
-        kola_name = request.session['name']
-
     errors=[]
     flag = ""
     if request.method == "POST":
@@ -210,11 +171,6 @@ def search(request):
 def email(request):
     errors=[]
     flag = ""
-    login_flag = False
-    kola_name = ''
-    if "login_flag" in request.session:
-        login_flag = True
-        kola_name = request.session['name']
     if request.method == "POST":
         if not request.POST.get('name',''):
             errors.append(u'请输入你的名字')
@@ -230,15 +186,7 @@ def email(request):
                 flag = u"邮件发送成功。"
             except:
                 flag =u'邮件发送失败'
-    return render_to_response('email.html',{
-        'flag':flag,
-        'errors':errors,
-        'name':request.POST.get('name',''),
-        'email':request.POST.get('email',''),
-        'message':request.POST.get('message',''),
-        'login_flag':login_flag,
-        'kola_name':kola_name
-        },context_instance=RequestContext(request))
+    return render_to_response('email.html',locals(),context_instance=RequestContext(request))
 
 
 def test(request):
@@ -248,7 +196,6 @@ def test(request):
 #@csrf_exempt
 def login(request):
     errors = []
-    login_flag = False
     register_flag = False
     if request.method == "POST":
         if not request.POST.get('username',''):
@@ -262,10 +209,6 @@ def login(request):
                 password=password)
             if user is not None and user.is_active:
                 auth.login(request,user)
-                login_flag = True
-                request.session['login_flag'] = True
-                request.session['name'] = request.POST.get('username','')
-                kola_name = request.user.username
                 return HttpResponseRedirect("/index/")
             else:
                 errors.append(u'登录失败，请重试')
@@ -277,7 +220,6 @@ def login(request):
 
 def logout(request):
     if request.user.is_authenticated():
-        del request.session['login_flag']
         auth.logout(request)
         return render(request,"logout.html",{})
     else:
