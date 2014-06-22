@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'myblog.views.index', name='home'),
     url(r'^index/$', 'myblog.views.index',name='index'),
+    url(r'^admin/', include(admin.site.urls)),    
     url(r'^blog/$','myblog.views.blog',name='blog'),
     url(r'^blog/(?P<blog_id>\d+)/$','myblog.views.detail',name='detail'),
     url(r'^bigkola/$','myblog.views.bigkola',name='bigkola'),
