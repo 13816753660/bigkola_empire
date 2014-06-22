@@ -217,7 +217,7 @@ function index_hide(index_one,index_two){
 		
 		
 		<td class="main_pic">
-		{%if not login_flag%}
+		{%if not user.is_authenticated%}
 		  <div class="index_1" ><!--+++++++++++++++++start index_1++++++++++++++++++-->
 			
 		    <div class="index1_img">
@@ -259,7 +259,7 @@ function index_hide(index_one,index_two){
 					  name="login">登录帝国</button></td>
 					<td class="base_btn"><button type='button' 
 					  class="button button-rounded button-flat-caution button-small" 
-					  id="register">申请帝国公民身份</button></td>
+					  id="register">申请帝国国民身份</button></td>
 				  </div>	  
 				</tr>
 			  </table>		
