@@ -72,13 +72,6 @@ def detail(request,blog_id):
         kola_name = request.session['name']
     try:
         blog = MyBlog.objects.get(pk=blog_id)
-        context = blog.content.replace('\n','<br>&nbsp;&nbsp;&nbsp;')
-        #user = Kola_user.objects.all()[0]
-        if len(context)>100:
-            text = context[:100]+'...'
-            text = text.replace('<br>','')
-        else:
-            text = context
     except MyBlog.DoesNotExist:
         raise Http404
     return render(request,'detail.html',locals())
