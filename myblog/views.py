@@ -17,7 +17,7 @@ def index(request):
     '''
     首页
     '''
-    return render_to_response('index.html', locals(),context_instance=RequestContext(request))
+    return render(request,'index.html')
 
 def blog(request):
     '''
