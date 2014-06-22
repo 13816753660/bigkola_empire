@@ -80,7 +80,7 @@ margin:5px auto 25px 20px;
 	  </div>
 		{%for new in contacts%}
 		  <div class="news_content">
-		    <p class="new_text">{{new.text|safe}}</p>
+		    <p class="new_text">{{new.title|safe}}</p>
 		    <p class="news_tag">
 			  {%if new.source%}
 			  {{new.source}}
@@ -98,7 +98,7 @@ margin:5px auto 25px 20px;
 			   <span class="news_tag_name"><a href="#">匿名</a></span>
 			  {%endif%}
 				|
-				<span class="unfold"><a href="#" class="news{{new.id}}">展开</a></span>
+				<span class="unfold"><a href="#" class="news{{new.id}}">展开&#9660;</a></span>
  
 				<div id="updateArea{{new.id}}" ></div>
 				<script>
