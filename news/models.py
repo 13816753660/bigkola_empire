@@ -12,17 +12,12 @@ class NewsTag(models.Model):
 
 
 class News(models.Model):
-    #应该再增加一个内容
-    text = models.TextField(max_length=4999)
+    title = models.TextField(max_length=1000)
+    text = models.TextField(max_length=4999,null=True,blank=True)
     url = models.URLField(blank=True,null=True)
     dt = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(NewsTag, blank=True, verbose_name=u'标签')
     source = models.CharField(max_length=200,blank=True)
     img = models.ImageField(upload_to='photo',null=True,blank=True)
     def __unicode__(self):
-        return self.source+":"+self.text[:30]
-    def get_text(self):
-        if len(self.text)>500:
-            return self.text[:500]
-        else:
-            return self.text
+        return self.source+":"+self.title[30]+":"+self.text[:30]
