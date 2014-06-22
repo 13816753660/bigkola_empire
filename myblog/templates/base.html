@@ -147,12 +147,12 @@
   
 <ul class="nav pull-right">
 
-{%if login_flag%}
+{%if user.is_authenticated%}
   <li class="dropdown dropdown_one">
     <a href="#"
           class="dropdown-toggle"
           data-toggle="dropdown">
-          {{kola_name}}
+          {{user.username}}
           <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
