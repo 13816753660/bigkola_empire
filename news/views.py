@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect,Http404
 from news.models import News,NewsTag
 from django.core.paginator import Paginator,InvalidPage,EmptyPage,PageNotAnInteger
 import random
+
 def index(request):
     login_flag = False
     kola_name = ''
@@ -21,7 +22,7 @@ def index(request):
             errors.append(u"提交内容长度过长,不超过1000个字.")
         if not errors:
             new_news =News(
-                text=request.POST.get('news',''),
+                title=request.POST.get('news',''),
                 source=u"匿名新闻",
                 )
             new_news.save()
@@ -43,9 +44,7 @@ def index(request):
 
 
 def detail(request):
-    #news = News.objects.get(pk=news_id)
     return HttpResponse("ok")
-    #return render(request,'news',locals())
 
 def news_detail(request,news_id):
     news = News.objects.get(pk=news_id)
