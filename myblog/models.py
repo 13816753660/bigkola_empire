@@ -12,6 +12,7 @@ class Tag(models.Model):
 class MyBlog(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100,blank=True)
+    intro = models.TextField(max_length=500,blank=True)
     content = models.TextField(max_length=99999)
     pub_date = models.DateTimeField(auto_now_add=True)
     website = models.URLField(blank=True)
@@ -57,11 +58,6 @@ class Kola_user(models.Model):
     hobbies = models.CharField(max_length=100,null=True,blank=True)
     regTime = models.DateTimeField(null=True,blank=True)
     bio = models.TextField(null = True,blank=True)
-    #user = models.ForeignKey(User)
     user = models.OneToOneField(User)
     def __unicode__(self):
         return self.bio
-
-
-class Test(models.Model):
-    pass
