@@ -70,8 +70,8 @@ word-break: break-all;
 	  <div class="blog_img">
 	     <img src="{{STATIC_URL}}images/blog.png"> 
 	  </div>	
-	  {% if thelist %} 
-		{% for blog,content,num in contacts %}
+	  {% if blog_list %} 
+		{% for blog in contacts %}
 			<div class="theblog">
 			  <ul class="nav nav-list">
 			    <li class="nav-header">
@@ -85,16 +85,16 @@ word-break: break-all;
 				  {%if blog.author%}
 				  <p>
 					<strong>&nbsp;<a href="#">•&nbsp;via:{{blog.author}}</a></strong> 
-					&nbsp;&nbsp;|&nbsp;&nbsp; <span><a href="#">{{num}}评论</a></span> 
+					&nbsp;&nbsp;|&nbsp;&nbsp; <a href="#">{{blog.pub_date|date:"Y年m月d日"}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="#"> {{blog.message_set.all|length}}评论</a></span> 
 				  </p>	
 				  {%else%}
 				  <p>
 				    <strong>&nbsp;<a href="#">•&nbsp;via:admin</a></strong>
-					&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="#">{{num}}评论</a></span>
+					&nbsp;&nbsp;|&nbsp;&nbsp; <a href="#">{{blog.pub_date|date:"Y年m月d日"}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="#"> {{blog.message_set.all|length}}评论</a></span>
 				  </p>	
 				  {%endif%}
 				</li>
-				<p id="content">       {{content|safe}}  <br>	</p>
+				<p id="content">       {{blog.intro|safe}}  <br>	</p>
 				
 				 
 				  <div class="full_text">
