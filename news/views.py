@@ -5,6 +5,9 @@ from news.models import News,NewsTag
 from django.core.paginator import Paginator,InvalidPage,EmptyPage,PageNotAnInteger
 import random
 
+#导入geetest验证包文件
+import geetest
+
 def index(request):
     login_flag = False
     kola_name = ''
@@ -16,13 +19,22 @@ def index(request):
         kola_name = request.session['name']
     news = News.objects.order_by("-dt")
     if request.method == "POST":
-        if len(request.POST.get('news',''))<70:
-            errors.append(u'提交内容长度必须大于70字.')
+        #验证代码 +++++++++++++++++++++++++++++++++++++++++++++++
+        challenge = request.POST.get('geetest_challenge')
+        validate = request.POST.get('geetest_validate')
+        seccode = request.POST.get('geetest_seccode')
+        gt = geetest.geetest('geetest_KEY')
         if len(request.POST.get('news',''))>1000:
             errors.append(u"提交内容长度过长,不超过1000个字.")
+        #————————————————————————————————————————————————————————
+        
+        if len(request.POST.get('news',''))<70:
+            errors.append(u'提交内容长度必须大于70字.')
+        if not gt.geetest_validate(challenge, validate, seccode):
+            errors.append(u'验证未通过，请先通过验证')  
         if not errors:
             new_news =News(
-                title=request.POST.get('news',''),
+                text=request.POST.get('news',''),
                 source=u"匿名新闻",
                 )
             new_news.save()
@@ -44,7 +56,9 @@ def index(request):
 
 
 def detail(request):
+    #news = News.objects.get(pk=news_id)
     return HttpResponse("ok")
+    #return render(request,'news',locals())
 
 def news_detail(request,news_id):
     news = News.objects.get(pk=news_id)
