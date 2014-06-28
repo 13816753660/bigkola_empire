@@ -1,8 +1,8 @@
+#!coding:utf8
 '''
 验证码包文件
 '''
 
-#!coding:utf8
 from hashlib import md5
 import time
 import urllib2
