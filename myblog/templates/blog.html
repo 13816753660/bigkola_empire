@@ -52,21 +52,50 @@ h2{
 	margin-bottom:10px;
 	text-align:right;
 }
-.full_text a:hover
-{text-decoration:none;}
-	.the_message_text{
+.full_text a:hover{
+	text-decoration:none;
+}
+.the_message_text{
 	table-layout:fixed; 
 	word-break: break-all;
 	overflow:hidden; 
 }
 #content{
-word-break: break-all;
+	word-break: break-all;
 }
+
+.pagination{
+	padding:20px;
+}
+.geetest-test{
+	position: relative;
+	margin-top: 10px;
+	float: right;
+}
+.sub{
+	padding:15px 5px 5px 5px;
+	border-top:thin solid #dddddd;
+	text-align:right;
+}
+.the_message{
+	padding:10px 20px 5px 10px;
+	border-top:thin solid #dddddd;
+}
+.message_text{
+	width:430px;
+}
+.message_title{
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	border-top:thin solid #dddddd;
+}
+
 </style>
 
 <div class="container mainblog">
   <div class="row">
-    <div class="span8 main_8">
+    <div class="span8 main_8"><!--start blog-->
 	  <div class="blog_img">
 	     <img src="{{STATIC_URL}}images/blog.png"> 
 	  </div>	
@@ -152,8 +181,69 @@ word-break: break-all;
 					</span>
 			{% endif %}
 		{% endif %}
-      </div>	  
-	</div>
+      </div>	
+
+    <div class="message">
+	  <div class="message_title">
+		<h3>快速留言：</h3>
+	  </div>
+		<form class="message form-horizontal " id="message_form" action=/message/ method="post">
+				{%csrf_token%}
+				<fieldset>
+				  
+				  <div class="control-group">
+					<label class="control-label" for="input01">姓名（可选）：</label>
+					<div class="controls">
+					  <input type="text" class="input-xlarge message_text" id="input01" placeholder="Type Name…" name="name">
+					</div>
+				  </div>
+				  
+				  <div class="control-group">
+					<label class="control-label" for="input01">邮箱（可选）：</label>
+					<div class="controls">
+						<input type="text" class="input-xlarge message_text"  placeholder="Type Email…" name="email">
+					 
+						<div class="alert alert-info">
+						  <a class="close" data-dismiss="alert">×</a>
+						  {%if flag%}
+						  {{flag}}
+						  {%else%}
+						  <strong>给帝国留言：</strong>
+						  {%endif%}
+						</div> 
+						
+						{% if errors%}
+						{% for error in errors %}
+						<div class="alert alert-error">
+						  <a class="close" data-dismiss="alert">×</a>
+						  <strong>警告!</strong> {{error}}
+						</div>
+						{%endfor%}
+						
+						{%endif%}
+						</div>
+				  </div>		  
+				  
+				  
+				  <div class="control-group">
+					<label class="control-label" for="textarea">留言：</label>
+					<div class="controls">
+					  <textarea class="message_text" id="textarea" rows="10" cols="50" 
+						maxlength="10000"
+						placeholder="Type Message…" name="message"></textarea>
+					</div>
+					  <div class="geetest-test">
+					  <script type="text/javascript" src="http://api.geetest.com/get.php?gt=a5090d65309f03a46900aceb02eb687e"></script>
+					  </div>					
+				  </div>
+				  <div class="sub">
+					<button type="submit" class="button button-rounded button-flat-highlight" id="message_button">提交留言</button>
+				  </div>
+				</fieldset>
+		</form>
+    </div><!--end message-->
+
+	</div><!--end blog-->
 	
 	<div class="span4">
 		<div class="well sidebar-nav">
@@ -241,43 +331,6 @@ word-break: break-all;
 		</div><!-- end SNS分享。 -->
 
 
-		<div class="reply_message">
-				<form class="well" action=/message/ method="post">
-				  <ul class="nav nav-list">
-					<li class="nav-header">快速留言：</li>
-					<li>
-					<fieldset>
-					{%csrf_token%}
-					  <label>姓名（可选）：</label>
-					  <input type="text" class="span3" placeholder="Type Name…" name="name">
-					
-					{% if errors%}
-					{% for error in errors %}
-					  <div class="alert alert-error">
-						<a class="close" data-dismiss="alert">×</a>
-						<strong>警告!</strong> {{error}}
-					  </div>
-					{%endfor%}
-					
-					{%endif%}
-					
-					  <label>留言内容：</label>
-					  <div class="controls">
-						<textarea class="span3" id="textarea" rows="7" placeholder="Type Message…" 
-						  maxlength="10000" name="message"></textarea>
-					  </div>
-				  
-					  <div class="sub">
-						<button type="submit" class="button button-rounded button-flat-primary button-small" id="message_button">提交留言</button>
-					  </div>			
-					</fieldset>	
-					</li>
-				  </ul>
-				</form>
-		</div>	
-		
-		
-	<!--=======留言板================================-->	
 
 		<div class="well">
 		  <ul class="nav nav-list">
