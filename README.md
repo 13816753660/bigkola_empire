@@ -21,6 +21,8 @@ bigkola_empire
 
 <li><b>6.29：</b></li>
 <li>10.修改news视图、模板，添加验证功能，使用geetest图片验证，像大家也推荐下</li>
+<li>11.blog,留言板部分添加验证功能</li>
+<li>12.SAE 500豆消耗殆尽，由于微博账号被封，也无法充值，将网站迁移到vps</li>
 </code></pre>
 
 
