@@ -5,11 +5,12 @@ from myblog.models import *
 from django.core.mail import send_mail
 from django.core.paginator import Paginator,InvalidPage,EmptyPage,PageNotAnInteger
 from django.template import RequestContext
-import PyEmail
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
 
+import PyEmail
 import settings
+import geetest
 #import sae
 #from PIL import Image
 
@@ -120,6 +121,15 @@ def message(request):
     errors=[]
     flag = ""
     if request.method == "POST":
+        #验证部分代码 +++++++++++++++++++++++++++++++++++++++++++++++
+        challenge = request.POST.get('geetest_challenge')
+        validate = request.POST.get('geetest_validate')
+        seccode = request.POST.get('geetest_seccode')
+        gt = geetest.geetest('geetest_KEY')
+        if not gt.geetest_validate(challenge, validate, seccode):
+            errors.append(u'验证未通过，请先通过验证')       
+        #  ——————————————————————————————————————————————————————————
+            
         if not request.POST.get('message',''):
             errors.append(u'请输入留言内容')
         if not errors:
